@@ -1,0 +1,87 @@
+<div class="container">
+  <div id="loginBox" class="mainbox" >
+    <div class="panel-heading">
+      <div class="panel-title">Dodawanie Samochodu</div>
+    </div>
+  <div class="panel-body">
+      <form #AddCarForm="ngForm" (ngSubmit)="onSubmit(AddCarForm)" class="form-horizontal" role="form" novalidate >
+          <H2><label>Samochód</label></H2>
+        <div class="input-group">
+          <label>Data Przeglądu</label>
+          <input id="CarReviewDate" type="date" class="form-control" required name="CarReviewDate" placeholder="DD-MM-YYYY" 
+          ngModel #CarReviewDate="ngModel">
+        </div>
+        
+        <div class="input-group">
+          <label>Fabryka</label>
+          <input id="Factory" type="text" class="form-control" name="Factory" placeholder="Nazwa Fabryki" required ngModel #Factory="ngModel">
+        </div>
+  
+        <div class="input-group">
+          <label>Towarzystwo Ubezpieczeniowe</label>
+          <input id="Insurer" type="text" class="form-control" name="Insurer" placeholder="Ubezpieczyciel" required ngModel #Insurer="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Model Samochodu</label>
+          <input id="Model" type="text" class="form-control" name="Model" placeholder="Model samochodu" required ngModel #Model="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Data zakończenia Oc</label>
+          <input id="OcEndDate" type="date" class="form-control" name="OcEndDate" placeholder="Data konca oc" required ngModel #OcEndDate="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Właściciel</label>
+          <input id="Owner" type="text" class="form-control" name="Owner" placeholder="Właściciel Samochodu" required ngModel #Owner="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Moc samochodu</label>
+          <input id="Power" type="text" class="form-control" name="Power" placeholder="Moc Samochodu" required ngModel #Power="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Typ samochodu</label>
+          <input id="TypeOfCar" type="text" class="form-control" name="TypeOfCar" placeholder="Typ Samochodu" required ngModel #TypeOfCar="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Data Produkcji</label>
+          <input id="YearOfProduction" type="number" class="form-control" name="YearOfProduction" placeholder="Rocznik Samochodu" required ngModel #YearOfProduction="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Numer Vin</label>
+          <input id="VinNumber" type="text" class="form-control" name="VinNumber" placeholder="Numer Vin" required ngModel #VinNumber="ngModel">
+        </div>
+        <H2><label>Udt Elevator</label></H2>
+        <label>Udt Elevator Data przeglądu</label>
+        <div class="input-group">
+          <input id="UdtElevatorReviewFrom" type="date" class="form-control" name="UdtElevatorReviewFrom" placeholder="DD-MM-YYYY" required ngModel #UdtElevatorReviewFrom="ngModel">
+        </div>
+        
+        <label>Udt Elevator Koniec przeglądu</label>
+        <div class="input-group">
+          <input id="UdtElevatorReviewWhen" type="date" class="form-control" name="UdtElevatorReviewWhen" placeholder="DD-MM-YYYY" required ngModel #UdtElevatorReviewWhen="ngModel">
+        </div>
+        
+        
+        <H2><label>Tachograf</label></H2>
+        <label>Tachograf Data przeglądu</label>
+        <div class="input-group">
+          <input id="TachografReviewFrom" type="date" class="form-control" name="TachografReviewFrom" placeholder="DD-MM-YYYY" required ngModel #TachografReviewFrom="ngModel">
+        </div>
+        
+        <label>Tachograf Koniec przeglądu</label>
+        <div class="input-group">
+          <input id="TachografReviewWhen" type="date" class="form-control" name="TachografReviewWhen" placeholder="DD-MM-YYYY" required ngModel #TachografReviewWhen="ngModel">
+        </div>
+
+        
+        
+    </form>     
+  </div>                     
+  </div>  
+</div>
