@@ -39,21 +39,21 @@ namespace TransportApp.Migrations
 
                     b.Property<int>("Power");
 
-                    b.Property<int?>("TachografId");
+                    b.Property<DateTime?>("TachografReviewFrom");
+
+                    b.Property<DateTime?>("TachografReviewWhen");
 
                     b.Property<string>("TypeOfCar");
 
-                    b.Property<int?>("UdtElevatorId");
+                    b.Property<DateTime?>("UdtElevatorReviewWhen");
+
+                    b.Property<DateTime?>("UdtElewatorReviewFrom");
+
+                    b.Property<string>("VinNumber");
 
                     b.Property<int>("YearOfProduction");
 
-                    b.Property<string>("vinNumber");
-
                     b.HasKey("RegistrationNumber");
-
-                    b.HasIndex("TachografId");
-
-                    b.HasIndex("UdtElevatorId");
 
                     b.ToTable("Cars");
                 });
@@ -120,34 +120,6 @@ namespace TransportApp.Migrations
                     b.ToTable("Surveys");
                 });
 
-            modelBuilder.Entity("TransportApp.Models.Tachograf", b =>
-                {
-                    b.Property<int>("TachografId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("ReviewFrom");
-
-                    b.Property<DateTime>("ReviewWhen");
-
-                    b.HasKey("TachografId");
-
-                    b.ToTable("Tachografs");
-                });
-
-            modelBuilder.Entity("TransportApp.Models.UdtElevator", b =>
-                {
-                    b.Property<int>("UdtElevatorId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("ReviewFrom");
-
-                    b.Property<DateTime>("ReviewWhen");
-
-                    b.HasKey("UdtElevatorId");
-
-                    b.ToTable("UdtElevators");
-                });
-
             modelBuilder.Entity("TransportApp.Models.User", b =>
                 {
                     b.Property<double>("Pesel");
@@ -163,17 +135,6 @@ namespace TransportApp.Migrations
                     b.HasKey("Pesel");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("TransportApp.Models.Car", b =>
-                {
-                    b.HasOne("TransportApp.Models.Tachograf", "Tachograf")
-                        .WithMany()
-                        .HasForeignKey("TachografId");
-
-                    b.HasOne("TransportApp.Models.UdtElevator", "UdtElevator")
-                        .WithMany()
-                        .HasForeignKey("UdtElevatorId");
                 });
 
             modelBuilder.Entity("TransportApp.Models.Fault", b =>

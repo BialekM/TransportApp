@@ -1,33 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Tachograf } from '../Models/Tachograf';
+// import { Http, Headers, RequestOptions, Response } from '@angular/http';
+
+// import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
-import { AddCarModel } from '../Models/AddCarModel'
+import { CarModel } from '../Models/CarModel'
 import 'rxjs/add/operator/map';
-import { AddCarStatus } from '../Models/AddCarStatus';
+import { CarStatus } from '../Models/CarStatus';
+import { Observable } from 'rxjs/Observable';
+import { HttpHeaders } from '@angular/common/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class CarService {
 
-  constructor(private http: Http) { }
+  constructor(private http:Http) { }
+  public carList: CarModel[];
 
-  getHeroes(): Promise<Tachograf> {
-    console.log("wchodzi");
-    return this.http.get("http://localhost:54116/car")
-               .toPromise()
-               .then(response => response.json().data as Tachograf)
+  AddCar(addCarModel: CarModel): Promise<CarStatus>{
+
+    const headers =  new Headers({ 'Content-Type': 'application/json'});
+    return this.http.post("http://localhost:54116/AddCar", JSON.stringify({RegistrationNumber : addCarModel.RegistrationNumber, TypeOfCar: addCarModel.TypeOfCar, Model: addCarModel.Model,
+    YearOfProduction: addCarModel.YearOfProduction, Power: addCarModel.Power, vinNumber: addCarModel.VinNumber, Factory: addCarModel.Factory, CarReviewDate: addCarModel.CarReviewDate ,
+    OcEndDate: addCarModel.OcEndDate, Insurer: addCarModel.Insurer,UdtElevatorReviewWhen : addCarModel.UdtElevatorReviewWhen, UdtElevatorReviewFrom: addCarModel.UdtElevatorReviewFrom, 
+     TachografReviewWhen: addCarModel.TachografReviewWhen, TachografReviewFrom: addCarModel.TachografReviewFrom,FaultList: null ,Owner: addCarModel.Owner}), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+     then(response => {
+      var y = response.json();
+      return y;
+  });
   }
+  
+  // GetCars(): Promise<CarModel[]> {
+  //   return this.http.get("http://localhost:54116/GetCars").toPromise().then((response: Response) => {
+  //   this.carList = response.json();
+  //   return response.json() as CarModel[];
+  //   })
+  // }
 
-  AddCar(addCarModel: AddCarModel): Promise<AddCarStatus>{
-    return this.http.post("http://localhost:54116/AddCar", JSON.stringify({RegistrationNumber: addCarModel.RegistrationNumber, CarReviewDate: addCarModel.CarReviewDate ,Factory: addCarModel.Factory,
-  Insurer: addCarModel.Insurer,Model: addCarModel.Model,OcEndDate: addCarModel.OcEndDate,Owner: addCarModel.Owner,Power: addCarModel.Power,TypeOfCar: addCarModel.TypeOfCar,
-  YearOfProduction: addCarModel.YearOfProduction, VinNumber: addCarModel.VinNumber, UdtElevatorReviewFrom: addCarModel.UdtElevatorReviewFrom,
-  UdtElevatorReviewWhen : addCarModel.UdtElevatorReviewWhen, TachografReviewFrom: addCarModel.TachografReviewFrom, TachografReviewWhen: addCarModel.TachografReviewWhen})).toPromise()
-   .then((response: Response) => {
-    return response.json() as AddCarStatus;
-  })
-  }
-
+}
+  
   
   // EditPersonalData(editData: EditData): Promise<EditData> {
   //   return this.http.post(environment.baseUrl + 'account/editprofile', JSON.stringify({
@@ -39,4 +49,3 @@ export class CarService {
   //     return response.json() as PersonalData;
   //   }).catch(this.handleError);
   // }
-}

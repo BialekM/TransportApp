@@ -1,4 +1,4 @@
-export class AddCarStatus {
+export class CarStatus {
     RegistrationNumber: string;
     Status: string;
     Message: string;

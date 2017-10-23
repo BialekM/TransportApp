@@ -18,12 +18,7 @@ export class AppComponent implements OnInit{
 
   constructor(
     private carService: CarService,
-    private router : Router)
-    {}
-
-  GetCar() : void{
-    this.carService.getHeroes();
-  }
+    private router : Router){}
 }
 
 

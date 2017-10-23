@@ -1,4 +1,6 @@
-export class AddCarModel{
+import { Fault } from "./Fault";
+
+export class CarModel{
     RegistrationNumber: string;
     CarReviewDate : Date;
     Factory: string;
@@ -14,4 +16,5 @@ export class AddCarModel{
     UdtElevatorReviewWhen: Date;
     TachografReviewFrom: Date;
     TachografReviewWhen: Date;
+    FaultList : Array<Fault>;
 }

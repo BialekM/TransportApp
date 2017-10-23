@@ -6,7 +6,13 @@
   <div class="panel-body">
       <form #AddCarForm="ngForm" (ngSubmit)="onSubmit(AddCarForm)" class="form-horizontal" role="form" novalidate >
           <H2><label>Samochód</label></H2>
-        <div class="input-group">
+        
+          <div class="input-group">
+            <label>Numer Rejestracyjny</label>
+            <input id="RegistrationNumber" type="text" class="form-control" required name="RegistrationNumber" placeholder="Number Rejestracyjny"  ngModel #RegistrationNumber="ngModel">
+          </div>
+        
+          <div class="input-group">
           <label>Data Przeglądu</label>
           <input id="CarReviewDate" type="date" class="form-control" required name="CarReviewDate" placeholder="DD-MM-YYYY" 
           ngModel #CarReviewDate="ngModel">
@@ -79,6 +85,9 @@
           <input id="TachografReviewWhen" type="date" class="form-control" name="TachografReviewWhen" placeholder="DD-MM-YYYY" required ngModel #TachografReviewWhen="ngModel">
         </div>
 
+        <div class="form-group">
+          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+        </div>
         
         
     </form>     
