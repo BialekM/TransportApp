@@ -24,7 +24,7 @@ namespace TransportApp.Controllers
 
         [Route("AddCar"), HttpPost]
         [EnableCors("AllowSpecificOrigin")]
-        public async Task<CarStatus> AddCar(Car car)
+        public async Task<CarStatus> AddCar([FromBody]Car car)
         {
             return _carService.AddCar(car);
         }

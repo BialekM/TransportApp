@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../../services/car.service';
 import { CarModel } from '../../Models/CarModel';
+import {Moment} from '../../../../node_modules/moment'
 
 @Component({
   selector: 'app-main-cars',
@@ -14,11 +15,16 @@ export class MainCarsComponent implements OnInit {
   }
   carList: CarModel[];
   ngOnInit() {
+    this.carService.GetCars();
+    this.CreateCarList();
   }
 
   CreateCarList(){
     // this.carService.GetCars();
     this.carList=this.carService.carList
+    for(var i=0;i<this.carList.length;i++){
+      this.carList[i].CarReviewDate = this.carList[i].CarReviewDate.getTimezoneOffset();
+    }
   }
 
 }

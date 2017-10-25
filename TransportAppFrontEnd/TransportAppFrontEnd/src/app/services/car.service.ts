@@ -29,12 +29,13 @@ export class CarService {
   });
   }
   
-  // GetCars(): Promise<CarModel[]> {
-  //   return this.http.get("http://localhost:54116/GetCars").toPromise().then((response: Response) => {
-  //   this.carList = response.json();
-  //   return response.json() as CarModel[];
-  //   })
-  // }
+  GetCars(): Promise<CarModel[]> {
+    return this.http.get("http://localhost:54116/GetCars").toPromise().then((response: Response) => {
+    console.log(response.json());
+    this.carList = response.json();
+    return response.json() as CarModel[];
+    })
+  }
 
 }
   

@@ -1,6 +1,29 @@
-<p>
-  main-cars works!
+ main-cars works!
+  <div class="row">
+    <div class="col-sm-2">Numer Rejestracyjny</div>
+    <div class="col-sm-1">Typ</div>
+    <div class="col-sm-1">Model</div>
+    <div class="col-sm-1">Rok Produkcji</div>
+    <div class="col-sm-1">Moc</div>
+    <div class="col-sm-1">Numer Vin</div>
+    <div class="col-sm-1">Fabryka</div>
+    <div class="col-sm-1">Data Przegladu</div>
+    <div class="col-sm-1">Data końca Oc</div>
+    <div class="col-sm-2">Ubezpieczyciel</div>
+  </div>
   <li *ngFor="let car of carList; let i = index">
-    {{i}} {{car}}
+      <div class="row">
+          <div class="col-sm-2"> {{carList[i].registrationNumber}}</div>
+          <div class="col-sm-1">{{carList[i].typeOfCar}}</div>
+          <div class="col-sm-1">{{carList[i].model}}</div>
+          <div class="col-sm-1">{{carList[i].yearOfProduction}}</div>
+          <div class="col-sm-1">{{carList[i].power}} kW</div>
+          <div class="col-sm-1">{{carList[i].vinNumber}}</div>
+          <div class="col-sm-1">{{carList[i].Factory}}</div>
+          <div class="col-sm-1">{{carList[i].carReviewDate}}</div>
+          <div class="col-sm-1">{{carList[i].ocEndDate.getDate()}}</div>
+          <div class="col-sm-2">{{carList[i].insurer}}</div>
+        </div>
+               
   </li>
-</p>
+

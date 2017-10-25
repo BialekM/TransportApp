@@ -8,7 +8,7 @@ namespace TransportApp.Services
 {
     public class CarService : ICarService
     {
-        private TransportAppContext _context;
+        private readonly TransportAppContext _context;
 
         public CarService(TransportAppContext context)
         {
@@ -29,6 +29,7 @@ namespace TransportApp.Services
                 try
                 {
                     _context.Cars.Add(car);
+                    _context.SaveChangesAsync();
                     carStatus.Message = "Samochód dodany pomyślnie";
                     carStatus.Status = "ok";
                     return carStatus;
@@ -46,11 +47,12 @@ namespace TransportApp.Services
 
         public Car GetCar()
         {
-            return _context.Cars.Where(car => car.RegistrationNumber == "1").FirstOrDefault();
+            return _context.Cars.FirstOrDefault(car => car.RegistrationNumber == "1");
         }
         public List<Car> GetCars()
         {
-            return _context.Cars.ToList();
+            List<Car>ListOfCars =  _context.Cars.ToList();
+            return ListOfCars;
         }
     }
 }

@@ -1,6 +1,6 @@
-<!--The content below is only a placeholder and can be replaced.-->
-Jakis poczatkowy widok
-<app-administrator-menu-panel>ladowanie</app-administrator-menu-panel>
-<!-- <button class="btn btn-primary" (click)="GetCar()"> -->
-<app-add-car></app-add-car>
-<app-main-cars></app-main-cars>
+ <!-- The content below is only a placeholder and can be replaced.
+Jakis poczatkowy widok -->
+<div class="col-lg-1 col-lg-offset-1"> <a [routerLink]="['/AddCar']">AddCar</a> </div>
+<div class="col-lg-1 col-lg-offset-1"> <a [routerLink]="['/GetCars']">Cars</a> </div>
+<router-outlet></router-outlet> 
+<!-- <app-add-car> -->

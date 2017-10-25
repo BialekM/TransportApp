@@ -8,7 +8,7 @@ import { CarService } from './services/car.service';
 import { AdministratorMenuPanelComponent } from './Components/administrator-menu-panel/administrator-menu-panel.component';
 import { AddCarComponent } from './Components/add-car/add-car.component';
 import { MainCarsComponent } from './Components/main-cars/main-cars.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
