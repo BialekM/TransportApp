@@ -38,6 +38,7 @@ namespace TransportApp
             var connectionString = "Server=DESKTOP-NBCKI9K\\SQLEXPRESS;Database=TransportApp;Trusted_Connection=True;";
             services.AddDbContext<TransportAppContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<ICarService, CarService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

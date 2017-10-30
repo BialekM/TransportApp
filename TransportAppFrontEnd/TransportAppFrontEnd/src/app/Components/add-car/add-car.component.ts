@@ -15,7 +15,6 @@ export class AddCarComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    console.log(form.value);
     this.carService.AddCar(form.value);
   }
 }

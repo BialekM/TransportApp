@@ -10,6 +10,8 @@ import { AddCarComponent } from './Components/add-car/add-car.component';
 import { MainCarsComponent } from './Components/main-cars/main-cars.component';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { AddWorkerComponent } from './Components/add-worker/add-worker.component';
+import { WorkerService } from './services/worker.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { HttpModule } from '@angular/http';
     AdministratorMenuPanelComponent,
     AddCarComponent,
     MainCarsComponent,
+    AddWorkerComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [CarService],
+  providers: [CarService,WorkerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

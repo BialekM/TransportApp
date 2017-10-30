@@ -1,17 +1,31 @@
  main-cars works!
-  <div class="row">
-    <div class="col-sm-2">Numer Rejestracyjny</div>
-    <div class="col-sm-1">Typ</div>
-    <div class="col-sm-1">Model</div>
-    <div class="col-sm-1">Rok Produkcji</div>
-    <div class="col-sm-1">Moc</div>
-    <div class="col-sm-1">Numer Vin</div>
-    <div class="col-sm-1">Fabryka</div>
-    <div class="col-sm-1">Data Przegladu</div>
-    <div class="col-sm-1">Data końca Oc</div>
-    <div class="col-sm-2">Ubezpieczyciel</div>
-  </div>
-  <li *ngFor="let car of carList; let i = index">
+ <table class="table">
+ <thead>
+  <tr>
+    <th>Numer Rejestracyjny</th>
+    <th>Typ</th>
+    <th>Model</th>
+    <th>Rok Produkcji</th>
+    <th>Moc</th>
+    <th>Data przeglądu</th>
+    <th>Koniec Oc</th>
+  </tr>
+</thead>
+<tbody *ngFor="let car of carList; let i = index">
+  <tr>
+  <th>{{carList[i].registrationNumber}}</th>
+  <th>{{carList[i].typeOfCar}}</th>
+  <th>{{carList[i].model}}</th>
+  <th>{{carList[i].yearOfProduction}}</th>
+  <th>{{carList[i].power}} kw</th>
+  <th>{{carList[i].carReviewDate | date: 'dd/MM/yyyy'}}</th>
+  <th>{{carList[i].ocEndDate | date: 'dd/MM/yyyy' }}</th>
+  <th> <button>Edytuj auto</button></th>
+  </tr>
+  <tr *ngIf="DateAregood(i)">Niedługo kończy się przegląd</tr>
+</tbody>
+</table>
+  <!-- <li *ngFor="let car of carList; let i = index">
       <div class="row">
           <div class="col-sm-2"> {{carList[i].registrationNumber}}</div>
           <div class="col-sm-1">{{carList[i].typeOfCar}}</div>
@@ -20,10 +34,14 @@
           <div class="col-sm-1">{{carList[i].power}} kW</div>
           <div class="col-sm-1">{{carList[i].vinNumber}}</div>
           <div class="col-sm-1">{{carList[i].Factory}}</div>
-          <div class="col-sm-1">{{carList[i].carReviewDate}}</div>
-          <div class="col-sm-1">{{carList[i].ocEndDate.getDate()}}</div>
+          <div class="col-sm-1">{{carList[i].carReviewDate | date: 'dd/MM/yyyy'}}</div>
+          <div class="col-sm-1">{{carList[i].ocEndDate | date: 'dd/MM/yyyy' }}</div>
           <div class="col-sm-2">{{carList[i].insurer}}</div>
-        </div>
-               
-  </li>
+        </div>   
+        <div *ngIf="DateAregood(i)">
+          cos tam
+        </div>    
+  </li> -->
+
+  
 

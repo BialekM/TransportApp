@@ -1,0 +1,54 @@
+<div class="container">
+  <div id="loginBox" class="mainbox" >
+    <div class="panel-heading">
+      <div class="panel-title">Dodawanie Użytkownika</div>
+    </div>
+  <div class="panel-body">
+      <form #AddUserForm="ngForm" (ngSubmit)="onSubmit(AddUserForm)" class="form-horizontal" role="form" novalidate >
+          <H2><label>Uzytkownik</label></H2>
+        
+          <div class="input-group">
+            <label>Imie</label>
+            <input type="text" class="form-control" required name="userName" placeholder="Imie"  ngModel #userName="ngModel">
+          </div>
+        
+          <div class="input-group">
+          <label>Nazwisko</label>
+          <input type="text" class="form-control" required name="surname" placeholder="Nazwisko" 
+          ngModel #CarReviewDate="ngModel">
+        </div>
+          
+        <div class="input-group">
+            <label>Pesel</label>
+            <input type="number" class="form-control" name="pesel" placeholder="pesel" required ngModel #pesel="ngModel">
+          </div>
+
+        <div class="input-group">
+          <label>Login</label>
+          <input type="text" class="form-control" name="login" placeholder="login" required ngModel #login="ngModel">
+        </div>
+  
+        <div class="input-group">
+          <label>Hasło</label>
+          <input type="text" class="form-control" name="password" placeholder="Hasło" required ngModel #password="ngModel">
+        </div>
+
+        <div class="input-group">
+          <label>Potwierdzenie Hasła</label>
+          <input type="text" class="form-control" name="confirmPassword" placeholder="Powrórz hasło0" required ngModel #confirmPassword="ngModel">
+        </div>
+        
+        <label>Typ</label>
+          <select class="form-control" name="userType" placeholder="Typ użytkownika" required ngModel #userType="ngModel">
+            <option value="Boss">Szef</option>
+            <option value="Mechanic">Mechanik</option>
+            <option value="Worker">Pracownik</option>
+          </select>
+
+        <div class="form-group">
+          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+        </div>
+    </form>     
+  </div>                     
+  </div>  
+</div>

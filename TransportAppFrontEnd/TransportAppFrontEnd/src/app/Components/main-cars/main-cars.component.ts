@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../../services/car.service';
-import { CarModel } from '../../Models/CarModel';
-import {Moment} from '../../../../node_modules/moment'
+import { Moment } from '../../../../node_modules/moment'
+import { Car } from '../../Models/Car';
 
 @Component({
   selector: 'app-main-cars',
@@ -10,21 +10,30 @@ import {Moment} from '../../../../node_modules/moment'
 })
 
 export class MainCarsComponent implements OnInit {
-  
-  constructor(private carService: CarService) {    
+
+  constructor(private carService: CarService) {
   }
-  carList: CarModel[];
+  carList: Car[];
+  liczba: number;
+
   ngOnInit() {
-    this.carService.GetCars();
-    this.CreateCarList();
+    this.carService.GetCars().then(r => {
+
+      this.carList = r; 
+   });
   }
 
-  CreateCarList(){
-    // this.carService.GetCars();
-    this.carList=this.carService.carList
-    for(var i=0;i<this.carList.length;i++){
-      this.carList[i].CarReviewDate = this.carList[i].CarReviewDate.getTimezoneOffset();
-    }
+  DateAregood(i: number) {
+
+    // console.log(this.carList[i].carReviewDate)
+   let date= new Date(this.carList[i].carReviewDate);
+   let date2=Date.now();
+  console.log(date2 - date.getDate())
+  if(date2 - date.getDate()>=100*24*60*60){
+    return true;
+  }else{
+    return false;
+  }
   }
 
 }

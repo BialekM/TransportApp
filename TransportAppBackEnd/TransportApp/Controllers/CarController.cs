@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.KeyVault.Models;
-using Microsoft.EntityFrameworkCore;
-using Remotion.Linq.Parsing.Structure.IntermediateModel;
 using TransportApp.Models;
 using TransportApp.Services;
 
@@ -24,7 +21,7 @@ namespace TransportApp.Controllers
 
         [Route("AddCar"), HttpPost]
         [EnableCors("AllowSpecificOrigin")]
-        public async Task<CarStatus> AddCar([FromBody]Car car)
+        public CarStatus AddCar([FromBody]Car car)
         {
             return _carService.AddCar(car);
         }
@@ -40,8 +37,5 @@ namespace TransportApp.Controllers
         {
             return _carService.GetCar();
         }
-
-
-
     }
 }
