@@ -1,0 +1,113 @@
+<div class="container">
+  <div id="loginBox" class="mainbox" >
+    <div class="panel-heading">
+      <div class="panel-title">Dodawanie Samochodu</div>
+    </div>
+  <div class="panel-body">
+      <form #EditCarForm="ngForm" (ngSubmit)="onSubmit(EditCarForm)" class="form-horizontal"
+       role="form" novalidate >
+          <H2><label>Samochód</label></H2>
+        
+          <div class="input-group">
+            <label>Numer Rejestracyjny</label>
+            <input type="text" class="form-control" required name="registrationNumber" 
+            placeholder="Number Rejestracyjny"  [(ngModel)]="car.registrationNumber">
+          </div>
+        
+          <div class="input-group">
+          <label>Data Przeglądu</label>
+          <input type="date" class="form-control" required name="carReviewDate" placeholder="DD-MM-YYYY" 
+          [(ngModel)]="car.carReviewDate">
+        </div>
+        
+        <div class="input-group">
+          <label>Fabryka</label>
+          <input type="text" class="form-control" name="factory" placeholder="Nazwa Fabryki"
+           required [(ngModel)]="car.factory">
+        </div>
+  
+        <div class="input-group">
+          <label>Towarzystwo Ubezpieczeniowe</label>
+          <input type="text" class="form-control" name="insurer" placeholder="Ubezpieczyciel"
+          required [(ngModel)]="car.insurer">
+        </div>
+
+        <div class="input-group">
+          <label>Model Samochodu</label>
+          <input type="text" class="form-control" name="model" placeholder="Model samochodu" 
+          required [(ngModel)]="car.model">
+        </div>
+
+        <div class="input-group">
+          <label>Data zakończenia Oc</label>
+          <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" 
+          required [(ngModel)]="car.ocEndDate">
+        </div>
+
+        <div class="input-group">
+          <label>Właściciel</label>
+          <input type="text" class="form-control" name="owner" placeholder="Właściciel Samochodu" 
+          required [(ngModel)]="car.owner">
+        </div>
+
+        <div class="input-group">
+          <label>Moc samochodu</label>
+          <input type="text" class="form-control" name="power" placeholder="Moc Samochodu" 
+          required [(ngModel)]="car.power">
+        </div>
+
+        <div class="input-group">
+          <label>Typ samochodu</label>
+          <input type="text" class="form-control" name="typeOfCar" placeholder="Typ Samochodu" 
+          required [(ngModel)]="car.typeOfCar">
+        </div>
+
+        <div class="input-group">
+          <label>Data Produkcji</label>
+          <input type="number" class="form-control" name="yearOfProduction" 
+          placeholder="Rocznik Samochodu" required [(ngModel)]="car.yearOfProduction">
+        </div>
+
+        <div class="input-group">
+          <label>Numer Vin</label>
+          <input type="text" class="form-control" name="vinNumber" 
+          placeholder="Numer Vin" required [(ngModel)]="car.vinNumber">
+        </div>
+        <H2><label>Udt Elevator</label></H2>
+        <label>Udt Elevator Data przeglądu</label>
+        <div class="input-group">
+          <input type="date" class="form-control" 
+          name="udtElevatorReviewFrom" placeholder="DD-MM-YYYY" required 
+          [(ngModel)]="car.udtElevatorReviewFrom">
+        </div>
+        
+        <label>Udt Elevator Koniec przeglądu</label>
+        <div class="input-group">
+          <input type="date" class="form-control" 
+          name="udtElevatorReviewWhen" placeholder="DD-MM-YYYY" 
+          required [(ngModel)]="car.udtElevatorReviewWhen">
+        </div>
+        
+        
+        <H2><label>Tachograf</label></H2>
+        <label>Tachograf Data przeglądu</label>
+        <div class="input-group">
+          <input type="date" class="form-control"
+          name="tachografReviewFrom" placeholder="DD-MM-YYYY" required [(ngModel)]="car.tachografReviewFrom">
+        </div>
+        
+        <label>Tachograf Koniec przeglądu</label>
+        <div class="input-group">
+          <input type="date" class="form-control" name="tachografReviewWhen" 
+          placeholder="DD-MM-YYYY" required [(ngModel)]="car.tachografReviewWhen">
+        </div>
+
+        <div class="form-group">
+          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+        </div>
+        
+        
+    </form>     
+  </div>                     
+  </div>  
+</div>

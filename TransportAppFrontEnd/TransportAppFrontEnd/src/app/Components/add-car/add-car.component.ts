@@ -17,4 +17,11 @@ export class AddCarComponent implements OnInit {
   onSubmit(form: NgForm): void {
     this.carService.AddCar(form.value);
   }
+
+  IsEmpty(element: HTMLInputElement){
+    if(element.value === ''){
+      return true;
+    }
+  }
+
 }

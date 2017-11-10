@@ -35,7 +35,7 @@ namespace TransportApp
                     .AllowAnyHeader();
             }));
             services.AddMvc();
-            var connectionString = "Server=DESKTOP-NBCKI9K\\SQLEXPRESS;Database=TransportApp;Trusted_Connection=True;";
+            var connectionString = "Server=MICHAL-KOMPUTER\\SQLEXPRESS;Database=TransportApp;Trusted_Connection=True;";
             services.AddDbContext<TransportAppContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<IUserService, UserService>();

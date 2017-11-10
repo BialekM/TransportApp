@@ -47,7 +47,7 @@ namespace TransportApp.Services
 
         public Car GetCar()
         {
-            return _context.Cars.FirstOrDefault(car => car.RegistrationNumber == "1");
+            return _context.Cars.FirstOrDefault(car => car.RegistrationNumber == "213");
         }
         public List<Car> GetCars()
         {

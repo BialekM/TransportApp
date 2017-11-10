@@ -15,7 +15,7 @@ export class CarService {
 
   AddCar(addCarModel: Car): Promise<CarStatus>{
     const headers =  new Headers({ 'Content-Type': 'application/json'});
-    return this.http.post("http://localhost:54116/AddCar", JSON.stringify({registrationNumber : addCarModel.registrationNumber, typeOfCar: addCarModel.typeOfCar, Model: addCarModel.model,
+    return this.http.post("http://localhost:54117/AddCar", JSON.stringify({registrationNumber : addCarModel.registrationNumber, typeOfCar: addCarModel.typeOfCar, Model: addCarModel.model,
     YearOfProduction: addCarModel.yearOfProduction, Power: addCarModel.power, vinNumber: addCarModel.vinNumber, Factory: addCarModel.factory, CarReviewDate: addCarModel.carReviewDate ,
     OcEndDate: addCarModel.ocEndDate, Insurer: addCarModel.insurer,UdtElevatorReviewWhen : addCarModel.udtElevatorReviewWhen, UdtElevatorReviewFrom: addCarModel.udtElevatorReviewFrom, 
      TachografReviewWhen: addCarModel.tachografReviewWhen, TachografReviewFrom: addCarModel.tachografReviewFrom,FaultList: null ,Owner: addCarModel.owner}), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
@@ -26,10 +26,16 @@ export class CarService {
   }
   
   GetCars(): Promise<Car[]> {
-    return this.http.get("http://localhost:54116/GetCars").toPromise().then((response: Response) => {
+    return this.http.get('http://localhost:54117/GetCars').toPromise().then((response: Response) => {
     this.carList = response.json();
     return response.json() as Car[];
-    })
+    });
+  }
+
+  GetCar(): Promise<Car> {
+    return this.http.get('http://localhost:54117/GetCar').toPromise().then((response: Response) => {
+      return response.json() as Car;
+      });
   }
 
 }

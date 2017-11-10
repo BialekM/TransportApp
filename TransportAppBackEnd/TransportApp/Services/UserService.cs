@@ -45,5 +45,18 @@ namespace TransportApp.Services
             return userStatus;
         }
 
+        public List<User> GetUsers()
+        {
+            List<User> ListOfUsers = _context.Users.ToList();
+            return ListOfUsers;
+        }
+
+        public User GetUserByPesel(int pesel)
+        {
+            User user = _context.Users.Where(u => u.Pesel == pesel).FirstOrDefault();
+            return user;
+        }
+
     }
+    
 }

@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+   <tr>
+     <th>Imie</th>
+     <th>Nazwisko</th>
+     <th>Typ</th>
+     <th>Pesel</th>
+   </tr>
+ </thead>
+ <tbody *ngFor="let user of userList; let i = index">
+   <tr>
+   <th>{{userList[i].userName}}</th>
+   <th>{{userList[i].surname}}</th>
+   <th>{{userList[i].userType}}</th>
+   <th>{{userList[i].pesel}}</th>
+   <th> <button>Edytuj Pracownika</button></th>
+   </tr>
+ </tbody>
+ </table>

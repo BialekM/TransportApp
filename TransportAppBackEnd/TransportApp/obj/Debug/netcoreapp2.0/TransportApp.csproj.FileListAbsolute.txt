@@ -20,3 +20,14 @@ D:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcore
 D:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.AssemblyInfo.cs
 D:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.dll
 D:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.pdb
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\bin\Debug\netcoreapp2.0\TransportApp.deps.json
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\bin\Debug\netcoreapp2.0\TransportApp.runtimeconfig.json
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\bin\Debug\netcoreapp2.0\TransportApp.runtimeconfig.dev.json
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\bin\Debug\netcoreapp2.0\TransportApp.dll
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\bin\Debug\netcoreapp2.0\TransportApp.pdb
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.csprojResolveAssemblyReference.cache
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.csproj.CoreCompileInputs.cache
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.AssemblyInfoInputs.cache
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.AssemblyInfo.cs
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.dll
+C:\programowanie\TransportApp\TransportAppBackEnd\TransportApp\obj\Debug\netcoreapp2.0\TransportApp.pdb

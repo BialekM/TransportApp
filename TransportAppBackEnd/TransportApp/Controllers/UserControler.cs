@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TransportApp.Models;
 using TransportApp.Services;
@@ -16,9 +17,20 @@ namespace TransportApp.Controllers
 
         [Route("AddUser"), HttpPost]
         [EnableCors("AllowSpecificOrigin")]
-        public UserStatus AddCar([FromBody]User user)
+        public UserStatus AddUser([FromBody]User user)
         {
             return _userService.AddUser(user);
+        }
+
+        [Route("GetUsers"), HttpGet]
+        public List<User> GetUsers()
+        {
+            return _userService.GetUsers();
+        }
+        [Route("GetUser"), HttpGet]
+        public User GetUser(int pesel)
+        {
+            return _userService.GetUserByPesel(pesel);
         }
     }
 }

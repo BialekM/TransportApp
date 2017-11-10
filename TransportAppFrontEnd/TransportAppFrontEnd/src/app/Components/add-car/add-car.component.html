@@ -10,57 +10,90 @@
           <div class="input-group">
             <label>Numer Rejestracyjny</label>
             <input type="text" class="form-control" required name="registrationNumber" placeholder="Number Rejestracyjny"  ngModel #registrationNumber="ngModel">
+            <div *ngIf=" (registrationNumber.touched && IsEmpty(registrationNumber)) || !((registrationNumber.valid) || (registrationNumber.pristine))" class="alert alert-danger">
+              Numer rejestracyjny jest wymagany
+            </div>
           </div>
         
           <div class="input-group">
           <label>Data Przeglądu</label>
           <input type="date" class="form-control" required name="carReviewDate" placeholder="DD-MM-YYYY" 
           ngModel #carReviewDate="ngModel">
+          <div *ngIf=" (carReviewDate.touched && IsEmpty(carReviewDate)) || !((carReviewDate.valid) || (carReviewDate.pristine))" class="alert alert-danger">
+            Data przeglądu jest wymagana
+          </div>
         </div>
         
         <div class="input-group">
           <label>Fabryka</label>
           <input type="text" class="form-control" name="factory" placeholder="Nazwa Fabryki" required ngModel #factory="ngModel">
+          <div *ngIf=" (factory.touched && IsEmpty(factory)) || !((factory.valid) || (factory.pristine))" class="alert alert-danger">
+            Nazwa fabryki jest wymagana
+          </div>
         </div>
   
         <div class="input-group">
           <label>Towarzystwo Ubezpieczeniowe</label>
           <input type="text" class="form-control" name="insurer" placeholder="Ubezpieczyciel" required ngModel #insurer="ngModel">
+          <div *ngIf=" (insurer.touched && IsEmpty(insurer)) || !((insurer.valid) || (insurer.pristine))" class="alert alert-danger">
+            Towarzystwo ubezpieczeniowe jest wymagane
+          </div>
         </div>
 
         <div class="input-group">
           <label>Model Samochodu</label>
           <input type="text" class="form-control" name="model" placeholder="Model samochodu" required ngModel #model="ngModel">
+          <div *ngIf=" (model.touched && IsEmpty(model)) || !((model.valid) || (model.pristine))" class="alert alert-danger">
+            Model samochodu jest wymkagany
+          </div>
         </div>
 
         <div class="input-group">
           <label>Data zakończenia Oc</label>
           <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" required ngModel #ocEndDate="ngModel">
+          <div *ngIf=" (ocEndDate.touched && IsEmpty(ocEndDate)) || !((ocEndDate.valid) || (ocEndDate.pristine))" class="alert alert-danger">
+            Data Oc jest wymagana
+          </div>
         </div>
 
         <div class="input-group">
           <label>Właściciel</label>
           <input type="text" class="form-control" name="owner" placeholder="Właściciel Samochodu" required ngModel #owner="ngModel">
+          <div *ngIf=" (owner.touched && IsEmpty(owner)) || !((owner.valid) || (owner.pristine))" class="alert alert-danger">
+            Właściciel jest wymagany
+          </div>
         </div>
 
         <div class="input-group">
           <label>Moc samochodu</label>
-          <input id="power" type="text" class="form-control" name="power" placeholder="Moc Samochodu" required ngModel #power="ngModel">
+          <input id="power" type="text" class="form-control" name="power" pattern="[0-9%]+[0-9%]" placeholder="Moc Samochodu" required ngModel #power="ngModel">
+          <div *ngIf=" (power.touched && IsEmpty(ocEndDate)) || !((power.valid) || (power.pristine))" class="alert alert-danger">
+            Moc jest wymagana
+          </div>
         </div>
 
         <div class="input-group">
           <label>Typ samochodu</label>
           <input type="text" class="form-control" name="typeOfCar" placeholder="Typ Samochodu" required ngModel #typeOfCar="ngModel">
+          <div *ngIf=" (typeOfCar.touched && IsEmpty(typeOfCar)) || !((typeOfCar.valid) || (typeOfCar.pristine))" class="alert alert-danger">
+            Typ samochodu jest wymagany
+          </div>
         </div>
 
         <div class="input-group">
-          <label>Data Produkcji</label>
-          <input id="yearOfProduction" type="number" class="form-control" name="yearOfProduction" placeholder="Rocznik Samochodu" required ngModel #yearOfProduction="ngModel">
+          <label>Rok Produkcji</label>
+          <input id="yearOfProduction" type="number" class="form-control" name="yearOfProduction" pattern="[0-9%]+[0-9%]" placeholder="Rocznik Samochodu" required ngModel #yearOfProduction="ngModel">
+          <div *ngIf=" (yearOfProduction.touched && IsEmpty(yearOfProduction)) || !((yearOfProduction.valid) || (yearOfProduction.pristine))" class="alert alert-danger">
+            Rok produkcji jest wymagany
+          </div>
         </div>
 
         <div class="input-group">
           <label>Numer Vin</label>
           <input id="vinNumber" type="text" class="form-control" name="vinNumber" placeholder="Numer Vin" required ngModel #vinNumber="ngModel">
+          <div *ngIf=" (vinNumber.touched && IsEmpty(vinNumber)) || !((vinNumber.valid) || (vinNumber.pristine))" class="alert alert-danger">
+            Numer vin jest wymagany
+          </div>
         </div>
         <H2><label>Udt Elevator</label></H2>
         <label>Udt Elevator Data przeglądu</label>

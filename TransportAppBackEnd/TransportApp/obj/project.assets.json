@@ -13116,7 +13116,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Michał\\.nuget\\packages\\": {},
+    "C:\\Users\\Michal\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13125,17 +13125,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\programowanie\\TransportApp\\TransportAppBackEnd\\TransportApp\\TransportApp.csproj",
+      "projectUniqueName": "C:\\programowanie\\TransportApp\\TransportAppBackEnd\\TransportApp\\TransportApp.csproj",
       "projectName": "TransportApp",
-      "projectPath": "D:\\programowanie\\TransportApp\\TransportAppBackEnd\\TransportApp\\TransportApp.csproj",
-      "packagesPath": "C:\\Users\\Michał\\.nuget\\packages\\",
-      "outputPath": "D:\\programowanie\\TransportApp\\TransportAppBackEnd\\TransportApp\\obj\\",
+      "projectPath": "C:\\programowanie\\TransportApp\\TransportAppBackEnd\\TransportApp\\TransportApp.csproj",
+      "packagesPath": "C:\\Users\\Michal\\.nuget\\packages\\",
+      "outputPath": "C:\\programowanie\\TransportApp\\TransportAppBackEnd\\TransportApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Michał\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Michal\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { AddWorkerComponent } from './Components/add-worker/add-worker.component';
 import { WorkerService } from './services/worker.service';
+import { GetUsersComponent } from './Components/get-users/get-users.component';
+import { CarComponent } from './Components/car/car.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { WorkerService } from './services/worker.service';
     AddCarComponent,
     MainCarsComponent,
     AddWorkerComponent,
+    GetUsersComponent,
+    CarComponent,
   ],
   imports: [
     BrowserModule,
