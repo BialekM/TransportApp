@@ -3,9 +3,10 @@ enum Priority {
 }
 
 export class Fault{
-    FaultId: number;
-    FaultInformation: string;
-    Priority: Priority;
-    MechanicDone: Boolean;
-    ConfrimDone: Boolean;
+    faultId: number;
+    carId: number;
+    faultInformation: string;
+    priority: Priority;
+    mechanicDone: Boolean;
+    confirmDone: Boolean;
 }

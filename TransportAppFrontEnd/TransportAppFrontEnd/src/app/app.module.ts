@@ -14,6 +14,10 @@ import { AddWorkerComponent } from './Components/add-worker/add-worker.component
 import { WorkerService } from './services/worker.service';
 import { GetUsersComponent } from './Components/get-users/get-users.component';
 import { CarComponent } from './Components/car/car.component';
+import { CarFaultsComponent} from './Components/car-faults/car-faults.component';
+import { FaultComponent } from './Components/fault/fault.component';
+import { FuelsListComponent } from './Components/fuels-list/fuels-list.component';
+import { FuelComponent } from './Components/fuel/fuel.component'
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { CarComponent } from './Components/car/car.component';
     AddWorkerComponent,
     GetUsersComponent,
     CarComponent,
+    CarFaultsComponent,
+    FaultComponent,
+    FuelsListComponent,
+    FuelComponent,
   ],
   imports: [
     BrowserModule,

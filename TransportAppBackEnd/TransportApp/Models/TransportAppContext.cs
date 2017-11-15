@@ -9,6 +9,21 @@ namespace TransportApp.Models
 {
     public class TransportAppContext : DbContext
     {
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Car>()
+                .HasIndex(u => u.RegistrationNumber)
+                .IsUnique();
+            builder.Entity<Car>()
+                .HasIndex(u => u.VinNumber)
+                .IsUnique();
+            builder.Entity<User>()
+                .HasIndex(u => u.Login)
+                .IsUnique();
+            builder.Entity<User>()
+                .HasIndex(u => u.Pesel)
+                .IsUnique();
+        }
         public TransportAppContext(DbContextOptions<TransportAppContext> options) : base(options)
         {
            Database.EnsureCreated();

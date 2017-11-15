@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TransportApp.Models
 {
@@ -10,6 +11,8 @@ namespace TransportApp.Models
     public class User
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
         public double Pesel { get; set; }
         public string UserName { get; set; }
         public UserType UserType { get; set; }

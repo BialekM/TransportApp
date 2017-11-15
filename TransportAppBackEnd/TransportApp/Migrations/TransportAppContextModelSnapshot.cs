@@ -22,7 +22,7 @@ namespace TransportApp.Migrations
 
             modelBuilder.Entity("TransportApp.Models.Car", b =>
                 {
-                    b.Property<string>("RegistrationNumber")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CarReviewDate");
@@ -39,6 +39,8 @@ namespace TransportApp.Migrations
 
                     b.Property<int>("Power");
 
+                    b.Property<string>("RegistrationNumber");
+
                     b.Property<DateTime?>("TachografReviewFrom");
 
                     b.Property<DateTime?>("TachografReviewWhen");
@@ -53,7 +55,15 @@ namespace TransportApp.Migrations
 
                     b.Property<int>("YearOfProduction");
 
-                    b.HasKey("RegistrationNumber");
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegistrationNumber")
+                        .IsUnique()
+                        .HasFilter("[RegistrationNumber] IS NOT NULL");
+
+                    b.HasIndex("VinNumber")
+                        .IsUnique()
+                        .HasFilter("[VinNumber] IS NOT NULL");
 
                     b.ToTable("Cars");
                 });
@@ -63,7 +73,7 @@ namespace TransportApp.Migrations
                     b.Property<int>("FaultId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CarRegistrationNumber");
+                    b.Property<int>("CarId");
 
                     b.Property<bool>("ConfirmDone");
 
@@ -75,8 +85,6 @@ namespace TransportApp.Migrations
 
                     b.HasKey("FaultId");
 
-                    b.HasIndex("CarRegistrationNumber");
-
                     b.ToTable("Faults");
                 });
 
@@ -85,17 +93,17 @@ namespace TransportApp.Migrations
                     b.Property<int>("FuelId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CarId");
+
                     b.Property<DateTime>("DateOfFuel");
 
                     b.Property<double>("NumberOfLitres");
 
                     b.Property<double>("Price");
 
-                    b.Property<double?>("UserPesel");
+                    b.Property<int>("UserId");
 
                     b.HasKey("FuelId");
-
-                    b.HasIndex("UserPesel");
 
                     b.ToTable("Fuels");
                 });
@@ -111,22 +119,25 @@ namespace TransportApp.Migrations
 
                     b.Property<string>("SurveyDescription");
 
-                    b.Property<double?>("UserPesel");
+                    b.Property<int?>("Userid");
 
                     b.HasKey("SurveyId");
 
-                    b.HasIndex("UserPesel");
+                    b.HasIndex("Userid");
 
                     b.ToTable("Surveys");
                 });
 
             modelBuilder.Entity("TransportApp.Models.User", b =>
                 {
-                    b.Property<double>("Pesel");
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Login");
 
                     b.Property<string>("Password");
+
+                    b.Property<double>("Pesel");
 
                     b.Property<string>("Surname");
 
@@ -134,30 +145,23 @@ namespace TransportApp.Migrations
 
                     b.Property<int>("UserType");
 
-                    b.HasKey("Pesel");
+                    b.HasKey("id");
+
+                    b.HasIndex("Login")
+                        .IsUnique()
+                        .HasFilter("[Login] IS NOT NULL");
+
+                    b.HasIndex("Pesel")
+                        .IsUnique();
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("TransportApp.Models.Fault", b =>
-                {
-                    b.HasOne("TransportApp.Models.Car")
-                        .WithMany("FaultList")
-                        .HasForeignKey("CarRegistrationNumber");
-                });
-
-            modelBuilder.Entity("TransportApp.Models.Fuel", b =>
-                {
-                    b.HasOne("TransportApp.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserPesel");
                 });
 
             modelBuilder.Entity("TransportApp.Models.Survey", b =>
                 {
                     b.HasOne("TransportApp.Models.User")
                         .WithMany("ListofSurvey")
-                        .HasForeignKey("UserPesel");
+                        .HasForeignKey("Userid");
                 });
 #pragma warning restore 612, 618
         }

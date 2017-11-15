@@ -27,10 +27,10 @@ namespace TransportApp.Controllers
         {
             return _userService.GetUsers();
         }
-        [Route("GetUser"), HttpGet]
-        public User GetUser(int pesel)
+        [Route("GetUser/{id}"), HttpGet]
+        public User GetUser(int id)
         {
-            return _userService.GetUserByPesel(pesel);
+            return _userService.GetUser(id);
         }
     }
 }

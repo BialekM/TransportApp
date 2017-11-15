@@ -1,6 +1,7 @@
 import { Fault } from "./Fault";
 
 export class Car{
+    id: number;
     registrationNumber: string;
     carReviewDate : Date;
     factory: string;

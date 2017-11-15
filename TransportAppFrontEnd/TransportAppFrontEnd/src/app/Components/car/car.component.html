@@ -17,7 +17,7 @@
           <div class="input-group">
           <label>Data Przeglądu</label>
           <input type="date" class="form-control" required name="carReviewDate" placeholder="DD-MM-YYYY" 
-          [(ngModel)]="car.carReviewDate">
+          [(ngModel)]="carReviewDate">
         </div>
         
         <div class="input-group">
@@ -41,7 +41,7 @@
         <div class="input-group">
           <label>Data zakończenia Oc</label>
           <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" 
-          required [(ngModel)]="car.ocEndDate">
+          required [(ngModel)]="carOcEndDate">
         </div>
 
         <div class="input-group">
@@ -78,14 +78,14 @@
         <div class="input-group">
           <input type="date" class="form-control" 
           name="udtElevatorReviewFrom" placeholder="DD-MM-YYYY" required 
-          [(ngModel)]="car.udtElevatorReviewFrom">
+          [(ngModel)]="carUdtElevatorReviewFrom">
         </div>
         
         <label>Udt Elevator Koniec przeglądu</label>
         <div class="input-group">
           <input type="date" class="form-control" 
           name="udtElevatorReviewWhen" placeholder="DD-MM-YYYY" 
-          required [(ngModel)]="car.udtElevatorReviewWhen">
+          required [(ngModel)]="carUdtElevatorReviewWhen">
         </div>
         
         
@@ -93,13 +93,13 @@
         <label>Tachograf Data przeglądu</label>
         <div class="input-group">
           <input type="date" class="form-control"
-          name="tachografReviewFrom" placeholder="DD-MM-YYYY" required [(ngModel)]="car.tachografReviewFrom">
+          name="tachografReviewFrom" placeholder="DD-MM-YYYY" required [(ngModel)]="carTachografReviewFrom">
         </div>
         
         <label>Tachograf Koniec przeglądu</label>
         <div class="input-group">
           <input type="date" class="form-control" name="tachografReviewWhen" 
-          placeholder="DD-MM-YYYY" required [(ngModel)]="car.tachografReviewWhen">
+          placeholder="DD-MM-YYYY" required [(ngModel)]="carTachografReviewWhen">
         </div>
 
         <div class="form-group">

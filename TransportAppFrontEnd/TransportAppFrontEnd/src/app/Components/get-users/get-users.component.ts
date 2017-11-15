@@ -17,4 +17,16 @@ export class GetUsersComponent implements OnInit {
       });
   }
 
+  CheckUserType(a: string){
+    if(a=="0"){
+      return "Boss"
+    }
+    if(a=="1"){
+      return "Mechanic"
+    }
+    if(a=="2"){
+      return "Worker"
+    }
+  }
+
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TransportApp.Migrations
 {
-    public partial class initials : Migration
+    public partial class initial2342342 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

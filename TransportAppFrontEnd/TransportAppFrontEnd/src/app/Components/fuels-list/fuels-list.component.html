@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+   <tr>
+     <th>Id</th>
+     <th>Data Tankowania</th>
+     <th>Użytkownik</th>
+     <th>Liczba litrów</th>
+     <th>Cena</th>
+     <th><a [routerLink]="['Fuel/',0]"> Dodaj Tankowanie </a> </th>
+   </tr>
+ </thead>
+ <tbody *ngFor="let fault of faultList; let i = index">
+   <tr>
+   <th>{{fuel.fuelId}}</th>
+   <th>{{fuel.dateOfFuel}}</th>
+   <th>{{fuel.userId}}</th>
+   <th>{{fuel.numberOfLitres}}</th>
+   <th>{{fuel.price}}</th>
+   <th><a [routerLink]="['Fuel/', fuel.fuelId]"> Edytuj Naprawę </a> </th>
+   </tr>
+ </tbody>
+ </table>

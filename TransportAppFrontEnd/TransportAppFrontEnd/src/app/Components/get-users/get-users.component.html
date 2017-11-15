@@ -9,11 +9,11 @@
  </thead>
  <tbody *ngFor="let user of userList; let i = index">
    <tr>
-   <th>{{userList[i].userName}}</th>
-   <th>{{userList[i].surname}}</th>
-   <th>{{userList[i].userType}}</th>
-   <th>{{userList[i].pesel}}</th>
-   <th> <button>Edytuj Pracownika</button></th>
+   <th>{{user.userName}}</th>
+   <th>{{user.surname}}</th>
+   <th>{{CheckUserType(user.userType)}}</th>
+   <th>{{user.pesel}}</th>
+   <th><a [routerLink]="['/AddWorker/', user.id]"> Edytuj Użytkownika </a> </th>
    </tr>
  </tbody>
  </table>

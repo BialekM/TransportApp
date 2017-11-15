@@ -13,35 +13,20 @@
 </thead>
 <tbody *ngFor="let car of carList; let i = index">
   <tr>
-  <th>{{carList[i].registrationNumber}}</th>
-  <th>{{carList[i].typeOfCar}}</th>
-  <th>{{carList[i].model}}</th>
-  <th>{{carList[i].yearOfProduction}}</th>
-  <th>{{carList[i].power}} kw</th>
-  <th>{{carList[i].carReviewDate | date: 'dd/MM/yyyy'}}</th>
-  <th>{{carList[i].ocEndDate | date: 'dd/MM/yyyy' }}</th>
-  <th> <button>Edytuj auto</button></th>
+  <th>{{car.registrationNumber}}</th>
+  <th>{{car.typeOfCar}}</th>
+  <th>{{car.model}}</th>
+  <th>{{car.yearOfProduction}}</th>
+  <th>{{car.power}} kw</th>
+  <th>{{car.carReviewDate | date: 'dd/MM/yyyy'}}</th>
+  <th>{{car.ocEndDate | date: 'dd/MM/yyyy' }}</th>
+  <th><a [routerLink]="['/GetCar', car.id]"> Edytuj auto </a> </th>
+  <th><a [routerLink]="['/CarFaults', car.id]"> Naprawy </a> </th>
+  <th><a [routerLink]="['/GetFuels', car.id]"> Tankowania </a> </th>
   </tr>
   <tr *ngIf="DateAregood(i)">Niedługo kończy się przegląd</tr>
 </tbody>
 </table>
-  <!-- <li *ngFor="let car of carList; let i = index">
-      <div class="row">
-          <div class="col-sm-2"> {{carList[i].registrationNumber}}</div>
-          <div class="col-sm-1">{{carList[i].typeOfCar}}</div>
-          <div class="col-sm-1">{{carList[i].model}}</div>
-          <div class="col-sm-1">{{carList[i].yearOfProduction}}</div>
-          <div class="col-sm-1">{{carList[i].power}} kW</div>
-          <div class="col-sm-1">{{carList[i].vinNumber}}</div>
-          <div class="col-sm-1">{{carList[i].Factory}}</div>
-          <div class="col-sm-1">{{carList[i].carReviewDate | date: 'dd/MM/yyyy'}}</div>
-          <div class="col-sm-1">{{carList[i].ocEndDate | date: 'dd/MM/yyyy' }}</div>
-          <div class="col-sm-2">{{carList[i].insurer}}</div>
-        </div>   
-        <div *ngIf="DateAregood(i)">
-          cos tam
-        </div>    
-  </li> -->
 
   
 

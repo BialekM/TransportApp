@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TransportApp.Models
 {
     public class Car
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string RegistrationNumber { get; set; }
         public string TypeOfCar { get; set; }
         public string Model { get; set; }
@@ -21,7 +24,6 @@ namespace TransportApp.Models
         public DateTime? UdtElewatorReviewFrom { get; set; }
         public DateTime? TachografReviewWhen { get; set; }
         public DateTime? TachografReviewFrom { get; set; }
-        public List<Fault> FaultList { get; set; }
         public string Owner { get; set; }
 
     }

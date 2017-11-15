@@ -7,6 +7,6 @@ namespace TransportApp.Services
     {
         UserStatus AddUser(User user);
         List<User> GetUsers();
-        User GetUserByPesel(int pesel);
+        User GetUser(int id);
     }
 }

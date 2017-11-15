@@ -7,6 +7,7 @@ import { CarStatus } from '../Models/CarStatus';
 export class WorkerService {
 
   constructor(private http: Http) { }
+  
   AddWorker(user: User): Promise<CarStatus>{
     return this.http.post('http://localhost:54117/AddUser', JSON.stringify({pesel : user.pesel, userName: user.userName,
     userType: user.userType,
@@ -22,5 +23,11 @@ export class WorkerService {
     return this.http.get('http://localhost:54117/GetUsers').toPromise().then((response: Response) => {
     return response.json() as User[];
     });
+  
+  }
+  GetUser(id: number): Promise<User>{
+    return this.http.get('http://localhost:54117/GetUser/'+ id).toPromise().then((response: Response)=>{
+      return response.json() as User;
+    })
   }
 }

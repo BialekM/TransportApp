@@ -9,37 +9,36 @@
         
           <div class="input-group">
             <label>Imie</label>
-            <input type="text" class="form-control" required name="userName" placeholder="Imie"  ngModel #userName="ngModel">
+            <input type="text" class="form-control" required name="userName" placeholder="Imie" [(ngModel)]="user.userName">
           </div>
         
           <div class="input-group">
           <label>Nazwisko</label>
-          <input type="text" class="form-control" required name="surname" placeholder="Nazwisko" 
-          ngModel #CarReviewDate="ngModel">
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" required [(ngModel)]="user.surname">
         </div>
           
         <div class="input-group">
             <label>Pesel</label>
-            <input type="number" class="form-control" name="pesel" placeholder="pesel" required ngModel #pesel="ngModel">
+            <input type="number" class="form-control" name="pesel" placeholder="pesel" required [(ngModel)]="user.pesel">
           </div>
 
         <div class="input-group">
           <label>Login</label>
-          <input type="text" class="form-control" name="login" placeholder="login" required ngModel #login="ngModel">
+          <input type="text" class="form-control" name="login" placeholder="login" required [(ngModel)]="user.login">
         </div>
   
         <div class="input-group">
           <label>Hasło</label>
-          <input type="text" class="form-control" name="password" placeholder="Hasło" required ngModel #password="ngModel">
+          <input type="password" class="form-control" name="password" placeholder="Hasło" required [(ngModel)]="user.password">
         </div>
 
         <div class="input-group">
           <label>Potwierdzenie Hasła</label>
-          <input type="text" class="form-control" name="confirmPassword" placeholder="Powrórz hasło0" required ngModel #confirmPassword="ngModel">
+          <input type="password" class="form-control" name="confirmPassword" placeholder="Powrórz hasło" required ngModel #confirmPassword="ngModel">
         </div>
         
         <label>Typ</label>
-          <select class="form-control" name="userType" placeholder="Typ użytkownika" required ngModel #userType="ngModel">
+          <select class="form-control" name="userType" placeholder="Typ użytkownika" required [(ngModel)]="userType">
             <option value="Boss">Szef</option>
             <option value="Mechanic">Mechanik</option>
             <option value="Worker">Pracownik</option>

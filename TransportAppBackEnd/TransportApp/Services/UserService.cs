@@ -21,8 +21,10 @@ namespace TransportApp.Services
             userStatus.Pesel = user.Pesel;
             if (_context.Users.Count(c => c.Pesel.Equals(user.Pesel)) > 0)
             {
-                userStatus.Message = "Użytkownik o podanej rejestracji już istnieje";
-                userStatus.Status = "Failed";
+                _context.Users.Update(user);
+                _context.SaveChangesAsync();
+                userStatus.Message = "Pomyślnie zaktualizowano użytkownika";
+                userStatus.Status = "ok";
             }
             else
             {
@@ -51,9 +53,9 @@ namespace TransportApp.Services
             return ListOfUsers;
         }
 
-        public User GetUserByPesel(int pesel)
+        public User GetUser(int id)
         {
-            User user = _context.Users.Where(u => u.Pesel == pesel).FirstOrDefault();
+            User user = _context.Users.FirstOrDefault(u => u.id == id);
             return user;
         }
 

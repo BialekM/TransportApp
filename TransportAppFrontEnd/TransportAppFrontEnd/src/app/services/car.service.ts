@@ -6,11 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Car } from '../Models/Car';
+import { Fault } from '../Models/Fault';
+import { Fuel } from '../Models/Fuel';
 
 @Injectable()
 export class CarService {
 
   constructor(private http:Http) { }
+
   public carList: Car[];
 
   AddCar(addCarModel: Car): Promise<CarStatus>{
@@ -32,11 +35,59 @@ export class CarService {
     });
   }
 
-  GetCar(): Promise<Car> {
-    return this.http.get('http://localhost:54117/GetCar').toPromise().then((response: Response) => {
+  GetCar(carId: number): Promise<Car> {
+    return this.http.get('http://localhost:54117/GetCar/'+ carId).toPromise().then((response: Response) => {
       return response.json() as Car;
       });
   }
+  GetCarFaultList(carId: number): Promise<Fault[]>{
+    return this.http.get('http://localhost:54117/GetCarFaultList/'+ carId).toPromise().then((response:Response)=>{
+      console.log(response);
+      return response.json() as Fault[];
+    })
+  }
+
+  GetCarFault(carId: number,faultId:number): Promise<Fault>{
+    return this.http.get('http://localhost:54117/GetCarFault/'+ carId + '/Fault/' + faultId).toPromise().then((response:Response)=>{
+      console.log(response);
+      return response.json() as Fault;
+    })
+  }
+
+  GetCarFuelList(carId: number): Promise<Fuel[]>{
+    return this.http.get('http://localhost:54117/GetCarFuelList/'+ carId).toPromise().then((response:Response)=>{
+      console.log(response);
+      return response.json() as Fuel[];
+    })
+  }
+
+  GetCarFuel(carId: number,fuelId:number): Promise<Fuel>{
+    return this.http.get('http://localhost:54117/GetCarFuel/'+ carId + '/Fuel/' + fuelId).toPromise().then((response:Response)=>{
+      console.log(response);
+      return response.json() as Fuel;
+    })
+  }
+
+  AddFault(fault: Fault,carIdd: number, faultIdd:number): Promise<CarStatus>{
+    return this.http.post("http://localhost:54117/AddFault", JSON.stringify({faultInformation : fault.faultInformation, priority: fault.priority, mechanicDone: fault.mechanicDone,
+    confirmDone: fault.confirmDone, carId: carIdd, faultId: faultIdd
+    }), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    then(response => {
+    var y = response.json();
+    return y;
+  });
+  }
+
+  AddFuel(fuel: Fuel,carIdd: number, fuelIdd:number): Promise<CarStatus>{
+    return this.http.post("http://localhost:54117/AddFuel", JSON.stringify({fuelId : fuelIdd, dateOfFuel: fuel.dateOfFuel, carId: carIdd,
+    userId: fuel.userId, numberOfLitres: fuel.numberOfLitres, price: fuel.price
+    }), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    then(response => {
+    var y = response.json();
+    return y;
+  });
+  }
+
 
 }
   

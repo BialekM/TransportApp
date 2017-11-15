@@ -1,0 +1,41 @@
+<div class="container">
+  <div id="loginBox" class="mainbox" >
+    <div class="panel-heading">
+      <div class="panel-title">Dodawanie Użytkownika</div>
+    </div>
+  <div class="panel-body">
+      <form #AddFuelForm="ngForm" (ngSubmit)="onSubmit(AddFuelForm)" class="form-horizontal" role="form" novalidate >
+          <H2><label>Tankowanie</label></H2>
+        
+          <div class="input-group">
+            <label>Id</label>
+            <input type="number" class="form-control" name="fuelId"  required [(ngModel)]="fuel.fuelID">
+          </div>
+        
+          <div class="input-group">
+            <label>Data Tankowania</label>
+            <input type="date" class="form-control" name="dateOfFuel"  required [(ngModel)]="fuel.dateOfFuel">
+          </div>
+          
+          <div class="input-group">
+            <label>id użytkownika</label>
+            <input type="number" class="form-control" name="userId"  required [(ngModel)]="fuel.userId">
+          </div>
+
+          <div class="input-group">
+            <label>Liczba litrów</label>
+            <input type="number" class="form-control" name="numberOfLitres"  required [(ngModel)]="fuel.numberOfLitres">
+          </div>
+
+          <div class="input-group">
+            <label>Cena</label>
+            <input type="number" class="form-control" name="price"  required [(ngModel)]="fuel.price">
+          </div>
+
+        <div class="form-group">
+          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+        </div>
+    </form>     
+  </div>                     
+  </div>  
+</div>
