@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using TransportApp.Models;
 using TransportApp.Services;
 
@@ -43,8 +45,23 @@ namespace TransportApp
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TransportAppContext>()
                 .AddDefaultTokenProviders();
-            services.AddAuthentication();
-//            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TransportAppContext>();
+//            services.AddAuthentication()
+//                .AddCookie(cfg => cfg.SlidingExpiration = true);
+            services.AddAuthentication()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = "http://localhost:54117",
+                        ValidAudience = "http://localhost:54117",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEJAKISDLUGIKLUCZNIEWIEMPOCO"))
+                    };
+
+                });
+            //            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TransportAppContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +72,8 @@ namespace TransportApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("AllowSpecificOrigin");
-            app.UseIdentity();
+            app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

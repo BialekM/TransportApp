@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SQLitePCL;
@@ -21,11 +22,13 @@ namespace TransportApp.Controllers
         private SignInManager<User> _signInMgr;
         private UserManager<User> _userMgr;
         private IPasswordHasher<User> _hasher;
+        private readonly IConfiguration _config;
 
         public AuthController(TransportAppContext context,
             SignInManager<User> signInMgr,
             UserManager<User> userManager,
             ILogger<AuthController> logger,
+            IConfiguration config,
             IPasswordHasher<User> hasher)
         {
             _context = context;
@@ -33,6 +36,7 @@ namespace TransportApp.Controllers
             _logger = logger;
             _userMgr = userManager;
             _hasher = hasher;
+            _config = config;
         }
         
         [HttpPost("/auth/login")]
@@ -53,26 +57,26 @@ namespace TransportApp.Controllers
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                         };
 
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TOJESTJAKISDZIWNYDLUGIKLUCZ"));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEJAKISDLUGIKLUCZNIEWIEMPOCO"));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
-                            issuer: "http://localhost:4200",
-                            audience: "http://localhost:4200",
-                            claims: claims,
+                            "http://localhost:54117",
+                            "http://localhost:54117",
+//                            claims.Append(new Claim("roles","Admin")),
                             expires: DateTime.UtcNow.AddMinutes(10),
                             signingCredentials: creds
                             );
                         return Ok(new
                         {
                             token = new JwtSecurityTokenHandler().WriteToken(token),
-                            expiration = token.ValidTo
+//                            expiration = token.ValidTo
                         });
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError("Exception thrown while creating JWT: {ex}");
+                _logger.LogError(ex.ToString());
             }
             return BadRequest("Failed to generate token");
         }
