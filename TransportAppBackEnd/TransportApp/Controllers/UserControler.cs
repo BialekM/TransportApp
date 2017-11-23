@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TransportApp.Models;
@@ -17,7 +18,7 @@ namespace TransportApp.Controllers
 
         [Route("AddUser"), HttpPost]
         [EnableCors("AllowSpecificOrigin")]
-        public UserStatus AddUser([FromBody]User user)
+        public Task<UserStatus> AddUser([FromBody]User user)
         {
             return _userService.AddUser(user);
         }
@@ -28,7 +29,7 @@ namespace TransportApp.Controllers
             return _userService.GetUsers();
         }
         [Route("GetUser/{id}"), HttpGet]
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return _userService.GetUser(id);
         }

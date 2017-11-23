@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,11 @@ namespace TransportApp
             services.AddDbContext<TransportAppContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<TransportAppContext>()
+                .AddDefaultTokenProviders();
+            services.AddAuthentication();
+//            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TransportAppContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +55,7 @@ namespace TransportApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("AllowSpecificOrigin");
-
+            app.UseIdentity();
             app.UseMvc();
         }
     }
