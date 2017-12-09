@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Twitter;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -50,26 +51,25 @@ namespace TransportApp.Controllers
                     if (_hasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) ==
                         PasswordVerificationResult.Success)
                     {
-                        var claims = new[]
-                        {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                            new Claim(JwtRegisteredClaimNames.Acr, user.UserType.ToString()),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                        };
-
+                        var claims = new List<Claim>();
+                        claims.Add(new Claim("roles", "Admin"));
+                        claims.Add(new Claim("roles", "Manager"));
+                        claims.Add(new Claim("UserName",user.UserName));
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEJAKISDLUGIKLUCZNIEWIEMPOCO"));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
                             "http://localhost:54117",
                             "http://localhost:54117",
-//                            claims.Append(new Claim("roles","Admin")),
+                            claims,
                             expires: DateTime.UtcNow.AddMinutes(10),
                             signingCredentials: creds
                             );
                         return Ok(new
                         {
-                            token = new JwtSecurityTokenHandler().WriteToken(token),
-//                            expiration = token.ValidTo
+                            
+                            accestoken = new JwtSecurityTokenHandler().WriteToken(token),
+                            message = "pomyslnie zalogowano",
+                            operationStatus = "ok"
                         });
                     }
                 }
@@ -78,7 +78,13 @@ namespace TransportApp.Controllers
             {
                 _logger.LogError(ex.ToString());
             }
-            return BadRequest("Failed to generate token");
+            return Ok(new
+            {
+               
+               accestoken = "",
+               message = "Zly login lub haslo",
+               operationStatus = "bad"
+            });
         }
     }
 }

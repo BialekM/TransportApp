@@ -1,0 +1,69 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+<!-- <div class="page-login">
+  <div class="ui centered grid container">
+    <div id="loginBox" class="mainbox" >
+      <div class="panel-heading">
+        <div class="panel-title">Logowanie</div>
+      </div>
+    <div class="panel-body">
+        <form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" class="form-horizontal" role="form" novalidate >
+            <H2><label>Logowanie</label></H2>
+          
+            <div class="input-group">
+              <label>Login</label>
+              <input type="text" class="form-control" name="Login" required ngModel #Login="ngModel">
+            </div>
+          
+            <div class="input-group">
+              <label>Hasło</label>
+              <input type="password" class="form-control" name="Password"  required ngModel #Password="ngModel">
+            </div>
+
+          <div class="form-group">
+            <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+          </div>
+      </form>
+          <div *ngIf="this.CheckCorrectState()==false"> zly login lub haslo</div>     
+    </div>                     
+    </div>  
+  </div>
+</div> -->
+
+<div></div>
+<form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" class="form-horizontal" role="form" novalidate >
+  <div class="page-login">
+    <div class="ui centered grid container">
+      <div class="nine wide column">
+        <div *ngIf="this.CheckCorrectState()==false" class="ui icon warning message">
+            <i class="lock icon"></i>
+            <div  class="content">
+              <div class="header">
+                Login failed!
+              </div>
+              <p>Podales zly login lub haslo</p>
+            </div>
+          </div>
+        <div class="ui fluid card">
+          <div class="content">
+          <!-- <form class="ui form" method="POST"> -->
+            <div class="input-group">
+              <label>User</label>
+              <input type="text" class="form-control" name="Login" required ngModel #Login="ngModel">
+            </div>
+            <div class="input-group">
+              <label>Password</label>
+              <input type="password" class="form-control" name="Password"  required ngModel #Password="ngModel">
+            </div>
+            <!-- <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button> -->
+            <button class="ui primary labeled icon button" valid type="submit">
+              <i class="unlock alternate icon"></i>
+              Login
+            </button>
+          <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

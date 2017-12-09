@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using TransportApp.Models;
 using TransportApp.Services;
@@ -34,10 +35,13 @@ namespace TransportApp.Controllers
         {
             return _carService.AddFault(fault.CarId,fault);
         }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+//        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Manager")]
         [Route("GetCars"), HttpGet]
         public List<Car> ListOfCars()
         {
+//            var user = User.Identity;
+//            var name = User.Claims.ToArray();
+//            var value = name[1].Value;
             return _carService.GetCars();
         }
 

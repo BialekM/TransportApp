@@ -10,8 +10,9 @@ import { CarFaultsComponent } from './Components/car-faults/car-faults.component
 import { FaultComponent } from './Components/fault/fault.component';
 import { FuelsListComponent } from './Components/fuels-list/fuels-list.component';
 import {FuelComponent} from './Components/fuel/fuel.component';
+import { LoginComponent } from './Components/login/login.component';
 export const routes: Routes = [
-    { path: '', redirectTo: '/nic', pathMatch: 'full' },
+    { path: '', redirectTo: '/Login', pathMatch: 'full' },
     { path: 'GetCars', component: MainCarsComponent},
     { path: 'AddCar', component: AddCarComponent},
     // { path: 'AddWorker', component: AddWorkerComponent},
@@ -19,8 +20,9 @@ export const routes: Routes = [
     { path: 'GetCar/:id', component: CarComponent},
     { path: 'AddWorker/:id', component: AddWorkerComponent},
     { path: 'CarFaults/:id', component: CarFaultsComponent},
-    {path: 'GetFuels/:carId', component: FuelsListComponent },
+    { path: 'GetFuels/:carId', component: FuelsListComponent },
     { path: 'CarFaults/:id/Fault/:faultId',component: FaultComponent},
     { path: 'GetFuels/:carId/Fuel/:fuelId',component: FuelComponent},
+    { path: 'Login', component: LoginComponent},
     { path: '**' , component: MainCarsComponent},
   ];
