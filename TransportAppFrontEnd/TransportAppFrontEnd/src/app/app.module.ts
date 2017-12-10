@@ -22,6 +22,7 @@ import { LoginComponent } from './Components/login/login.component'
 import { AuthenticationService } from './services/authenticationService';
 import { JwtHelper } from 'angular2-jwt';
 import {SuiModule} from 'ng2-semantic-ui';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import {SuiModule} from 'ng2-semantic-ui';
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [CarService,WorkerService,AuthenticationService,JwtHelper],
+  providers: [CarService,WorkerService,AuthenticationService,JwtHelper,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
