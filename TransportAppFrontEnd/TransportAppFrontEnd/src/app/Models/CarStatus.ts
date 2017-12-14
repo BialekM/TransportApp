@@ -1,5 +1,5 @@
 export class CarStatus {
-    RegistrationNumber: string;
-    Status: string;
-    Message: string;
+    registrationNumber: string;
+    status: string;
+    message: string;
 }

@@ -8,14 +8,29 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-car.component.css']
 })
 export class AddCarComponent implements OnInit {
-
+  checkTachograf: boolean;
+  checkUdt: boolean;
+  buttonClicked = false;
+  loading = false;
+  error = '';
+  message = '';
+  status = '';
   constructor(private carService: CarService) { }
-
   ngOnInit() {
+  this.checkTachograf = false;
+  this.checkUdt = false;
   }
-
-  onSubmit(form: NgForm): void {
-    this.carService.AddCar(form.value);
+   onSubmit(form: NgForm): void {
+    if (form.valid) {
+      this.carService.AddCar(form.value).then(Response => {
+        this.message = Response.message;
+        console.log(this.message);
+        this.status = Response.status;
+        console.log(this.status);
+      });
+    }else {
+      return;
+    }
   }
 
   IsEmpty(element: HTMLInputElement) {
@@ -24,4 +39,7 @@ export class AddCarComponent implements OnInit {
     }
   }
 
+  ButtonClicked() {
+    this.buttonClicked = true;
+  }
 }

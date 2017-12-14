@@ -18,29 +18,28 @@ namespace TransportApp.Services
         public CarStatus AddCar(Car car)
         {
             CarStatus carStatus = new CarStatus();
-            carStatus.RegistrationNumber = car.RegistrationNumber;
-            if (_context.Cars.Count(c => c.RegistrationNumber.Equals(car.RegistrationNumber)) > 0)
+            try
             {
-                carStatus.Message = "Samochód o podanej rejestracji już istnieje";
-                carStatus.Status = "Failed";
-            }
-            else
-            {
-                try
+                carStatus.RegistrationNumber = car.RegistrationNumber;
+                if (_context.Cars.Count(c => c.RegistrationNumber.Equals(car.RegistrationNumber)) > 0)
+                {
+                    carStatus.Message = "Samochód o podanej rejestracji już istnieje";
+                    carStatus.Status = "Failed";
+                }
+                else
                 {
                     _context.Cars.Add(car);
                     _context.SaveChangesAsync();
                     carStatus.Message = "Samochód dodany pomyślnie";
                     carStatus.Status = "ok";
                     return carStatus;
-
                 }
-                catch (Exception e)
-                {
-                    carStatus.Message = e.Message;
-                    carStatus.Status = "Failed";
-                    return carStatus;
-                }
+            }
+            catch (Exception e)
+            {
+                carStatus.Message = e.Message;
+                carStatus.Status = "Failed";
+                return carStatus;
             }
             return carStatus;
         }

@@ -50,7 +50,7 @@
 
         <div class="input-group">
           <label class="labeli">Data zakończenia Oc</label>
-          <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" required ngModel #ocEndDate="ngModel">
+          <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" required ngModel #ocEndDate="ngModel" >
           <div *ngIf=" (ocEndDate.touched && IsEmpty(ocEndDate)) || !((ocEndDate.valid) || (ocEndDate.pristine))" class="alert alert-danger">
             Data Oc jest wymagana
           </div>
@@ -95,6 +95,8 @@
             Numer vin jest wymagany
           </div>
         </div>
+        <h3><input type="checkbox" #udt (change)="0"> Winda Udt</h3>
+        <div *ngIf="udt.checked">
         <H2><label class="labeli">Udt Elevator</label></H2>
         <label class="labeli">Udt Elevator Data przeglądu</label>
         <div class="input-group">
@@ -105,25 +107,33 @@
         <div class="input-group">
           <input id="udtElevatorReviewWhen" type="date" class="form-control" name="udtElevatorReviewWhen" placeholder="DD-MM-YYYY" required ngModel #udtElevatorReviewWhen="ngModel">
         </div>
+        </div>
         
-        
+        <h3><input type="checkbox" #Tachograf (change)="0"> Tachograf</h3>
+        <div *ngIf="Tachograf.checked">
         <H2><label class="labeli">Tachograf</label></H2>
         <label>Tachograf Data przeglądu</label>
         <div class="input-group">
           <input id="tachografReviewFrom" type="date" class="form-control" name="tachografReviewFrom" placeholder="DD-MM-YYYY" required ngModel #tachografReviewFrom="ngModel">
         </div>
-        
         <label class="labeli">Tachograf Koniec przeglądu</label>
         <div class="input-group">
           <input id="tachografReviewWhen" type="date" class="form-control" name="tachografReviewWhen" placeholder="DD-MM-YYYY" required ngModel #tachografReviewWhen="ngModel">
         </div>
-
+<       </div>
         <div class="form-group">
-          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
-        </div>
-        
-        
-    </form>     
+          <button valid type="submit" class="btn btn-primary center-block" (click)="ButtonClicked()" >  <b> Zatwierdź i wyślij</b> </button>
+        </div>  
+    </form>   
+    <div *ngIf="AddCarForm.invalid && buttonClicked" class="alert alert-danger">
+        Nie wypełniono wszystkich pól
+      </div>
+    <div *ngIf="status=='Failed'" class="alert alert-danger">
+        {{this.message}}
+      </div>
+      <div *ngIf="status=='ok'" class="alert alert-success">
+          {{this.message}}
+        </div>         
   </div>                     
   </div>  
 </div>
