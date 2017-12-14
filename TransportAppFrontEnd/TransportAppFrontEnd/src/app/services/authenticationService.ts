@@ -6,10 +6,12 @@ import { environment } from '../../environments/environment';
 import { Token } from '../Models/token';
 import { UserLoginData } from '../Models/UserLoginData';
 import { JwtHelper } from 'angular2-jwt';
+import { DecodeToken } from '../Models/DecodeToken';
 
 @Injectable()
 export class AuthenticationService{
     public static token : Token;
+    private decodeTeoken : DecodeToken;
     constructor(private http:Http,private jwtHelper: JwtHelper){
 
     }
@@ -22,8 +24,9 @@ export class AuthenticationService{
                 if(AuthenticationService.token.operationStatus=="ok"){
                     localStorage.setItem('currentUser',AuthenticationService.token.accestoken);
                 }
-                // console.log(this.jwtHelper.decodeToken(localStorage.getItem('currentUser')))
-                // console.log(AuthenticationService.token)
+                //  console.log(this.jwtHelper.decodeToken(localStorage.getItem('currentUser')))
+                // this.decodeTeoken = this.jwtHelper.decodeToken(localStorage.getItem('currentUser'));
+                // console.log(this.decodeTeoken.roles[1]);
                 return response.json();  
         });
     }

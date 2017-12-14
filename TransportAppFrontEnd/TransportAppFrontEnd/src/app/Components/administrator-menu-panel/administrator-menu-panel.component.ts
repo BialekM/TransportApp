@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuard } from '../../auth.guard';
 
 @Component({
   selector: 'app-administrator-menu-panel',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministratorMenuPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private guard: AuthGuard) { }
 
   ngOnInit() {
   }

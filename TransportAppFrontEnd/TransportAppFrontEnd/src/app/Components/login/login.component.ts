@@ -15,39 +15,28 @@ export class LoginComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor(private authService: AuthenticationService,private router: Router ,private authGuard : AuthGuard) { }
+  constructor(private authService: AuthenticationService, private router: Router , private authGuard: AuthGuard) {
+    localStorage.removeItem('currentUser');
+   }
 
   ngOnInit() {
-    this.authService.logout();
   }
-
-  // Login(userLoginData: UserLoginData){
-  //   this.authService.login(userLoginData).subscribe(result => {
-  //     // console.log(result);
-  //   })
-  // }
 
   Login(userLoginData: UserLoginData) {
     this.loading = true;
     this.authService.login(userLoginData)
-    .subscribe(result => {
-       if(this.authGuard.canActivate()){
-      this.router.navigate(['/AddCar']);
-      }else{
-      this.error = 'username or password is incorrect';
-      this.loading = false;
-      }
-    })
+    .subscribe(reposne => {
+    });
   }
 
-  CheckCorrectState(){
-    if(AuthenticationService.token!=undefined && AuthenticationService.token.operationStatus=="bad"){
+  CheckCorrectState() {
+    if (AuthenticationService.token !== undefined && AuthenticationService.token.operationStatus === 'bad') {
         return false;
     }
   }
 
   IsEmpty(inputValue: HTMLInputElement) {
-    if (inputValue.value == "") {
+    if (inputValue.value === '') {
       return true;
     } else {
       return false;
@@ -55,15 +44,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    if(form.valid){
+    if (form.valid) {
       this.Login(form.value);
-    }else{
+    }else {
       return;
-    }  
+    }
   }
 
-  ButtonClicked(){
-    this.buttonClicked=true;
+  ButtonClicked() {
+    this.buttonClicked = true;
   }
 
 }

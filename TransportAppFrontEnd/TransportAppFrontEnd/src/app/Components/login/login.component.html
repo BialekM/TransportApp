@@ -1,6 +1,5 @@
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-    <div class="someImage"><img class="ui centered medium image" width="300" src="assets/EasyTransport.png"></div>
+    <!-- <div class="someImage"><img class="ui centered medium image" width="300" src="assets/EasyTransport.png"></div>
 <div class="page-login">
     <div class="ui centered grid container">
       <div class="nine wide column">
@@ -45,5 +44,34 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
+  <div class="container"> 
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <H1 class="text-center">Witaj w Panelu Logowania</H1>
+            <div class="account-wall">
+                <div *ngIf="this.CheckCorrectState()==false" class="ui icon warning message" class="alert alert-danger" >
+                    Błędny Login lub Hasło
+                  </div>
+                <img class="profile-img" width="300" src="assets/EasyTransport.png"
+                    alt="">
+                <form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" class="form-signin" role="form" novalidate>
+                    <input type="text" class="form-control" name="Login" placeholder="login" required ngModel #Login="ngModel">
+                <div *ngIf="Login.touched && IsEmpty(Login)" class="alert alert-danger">
+                    Login jest wymagany
+                </div> 
+                <input type="password" class="form-control" name="Password" placeholder="password"  required ngModel #Password="ngModel">
+                <div *ngIf="Password.touched && IsEmpty(Password)" class="alert alert-danger">
+                    Hasło jest wymagane
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" (click)="ButtonClicked()" type="submit">
+                   Login</button>
+                   <div *ngIf="LoginForm.invalid && buttonClicked" class="alert alert-danger">
+                      Nie wypełniono wszystkich pól
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

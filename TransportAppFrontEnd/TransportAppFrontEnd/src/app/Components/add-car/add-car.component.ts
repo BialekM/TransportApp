@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../../services/car.service';
-import { NgForm } from "@angular/forms";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-car',
@@ -18,8 +18,8 @@ export class AddCarComponent implements OnInit {
     this.carService.AddCar(form.value);
   }
 
-  IsEmpty(element: HTMLInputElement){
-    if(element.value === ''){
+  IsEmpty(element: HTMLInputElement) {
+    if (element.value === '') {
       return true;
     }
   }

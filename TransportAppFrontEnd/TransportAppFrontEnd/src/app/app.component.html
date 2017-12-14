@@ -1,5 +1,7 @@
  <!-- The content below is only a placeholder and can be replaced.
 Jakis poczatkowy widok -->
+<div *ngIf="guard.CanActiveAdmin()">
 <app-administrator-menu-panel></app-administrator-menu-panel>
+</div>
 <router-outlet></router-outlet> 
 <!-- <app-add-car> -->
