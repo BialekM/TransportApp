@@ -40,7 +40,14 @@ namespace TransportApp
             services.AddDbContext<TransportAppContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<IUserService, UserService>();
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                })
                 .AddEntityFrameworkStores<TransportAppContext>()
                 .AddDefaultTokenProviders();
 //            services.AddAuthentication()

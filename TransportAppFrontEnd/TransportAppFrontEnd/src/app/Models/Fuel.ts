@@ -5,4 +5,6 @@ export class Fuel{
     userId: Number;
     numberOfLitres: number;
     price: number;
+    userName: string;
+    surname: string;
 }

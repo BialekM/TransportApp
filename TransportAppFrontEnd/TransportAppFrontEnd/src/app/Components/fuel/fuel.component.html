@@ -3,37 +3,65 @@
     <div class="panel-heading">
       <div class="panel-title">Dodawanie Użytkownika</div>
     </div>
-  <div class="panel-body">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
       <form #AddFuelForm="ngForm" (ngSubmit)="onSubmit(AddFuelForm)" class="form-horizontal" role="form" novalidate >
           <H2><label>Tankowanie</label></H2>
-        
+          
+          <label>Imie</label>
           <div class="input-group">
-            <label>Id</label>
-            <input type="number" class="form-control" name="fuelId"  required [(ngModel)]="fuel.fuelID">
+            <input type="text" class="form-control" name="userName" ngModel #UserName="ngModel"  required [(ngModel)]="fuel.userName">
           </div>
-        
+          <div *ngIf=" (UserName.touched && IsEmptyParam(fuel.userName)) || !((UserName.valid) || (UserName.pristine))" class="alert alert-danger">
+            Imie jest wymagane
+          </div>
+                    
           <div class="input-group">
-            <label>Data Tankowania</label>
-            <input type="date" class="form-control" name="dateOfFuel"  required [(ngModel)]="fuel.dateOfFuel">
+            <label>Nazwisko</label>
+            <input type="text" class="form-control" name="surname" ngModel #Surname="ngModel"  required [(ngModel)]="fuel.surname">
+          </div>
+          <div *ngIf=" (Surname.touched && IsEmptyParam(fuel.surname)) || !((Surname.valid) || (Surname.pristine))" class="alert alert-danger">
+            Nazwisko jest wymagane
           </div>
           
+          
+          
           <div class="input-group">
-            <label>id użytkownika</label>
-            <input type="number" class="form-control" name="userId"  required [(ngModel)]="fuel.userId">
+            <label>Data Tankowania</label>
+            <input type="date" class="form-control" name="dateOfFuel" ngModel #DateOfFuel="ngModel"  required [(ngModel)]="fuel.dateOfFuel">
           </div>
+          <div *ngIf=" (DateOfFuel.touched && IsEmptyParam(fuel.dateOfFuel)) || !((DateOfFuel.valid) || (DateOfFuel.pristine))" class="alert alert-danger">
+            Data tankowania jest wymagana
+          </div>
+          
+          
 
           <div class="input-group">
             <label>Liczba litrów</label>
-            <input type="number" class="form-control" name="numberOfLitres"  required [(ngModel)]="fuel.numberOfLitres">
+            <input type="number" class="form-control" name="numberOfLitres" ngModel #NumberOfLitres="ngModel"  required [(ngModel)]="fuel.numberOfLitres">
+          </div>
+          <div *ngIf=" (NumberOfLitres.touched && IsEmptyParam(fuel.numberOfLitres)) || !((NumberOfLitres.valid) || (NumberOfLitres.pristine))" class="alert alert-danger">
+            Data tankowania jest wymagana
           </div>
 
+          <label>Cena</label>
           <div class="input-group">
-            <label>Cena</label>
-            <input type="number" class="form-control" name="price"  required [(ngModel)]="fuel.price">
+            <input type="number" class="form-control" name="price" ngModel #Price="ngModel" required [(ngModel)]="fuel.price">
+          </div>
+          <div *ngIf=" (Price.touched && IsEmptyParam(fuel.price)) || !((Price.valid) || (Price.pristine))" class="alert alert-danger">
+            Cena za tankowanie jest wymagana
           </div>
 
         <div class="form-group">
-          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+          <button valid type="submit" class="btn btn-primary center-block" (click)="ButtonClicked()">  <b> Zatwierdź i wyślij</b> </button>
+        </div>
+        <div *ngIf="AddFuelForm.invalid && buttonClicked" class="alert alert-danger">
+          Nie wypełniono wszystkich pól
+        </div>
+        <div *ngIf="status=='Failed'" class="alert alert-danger">
+          {{this.message}}
+        </div>
+        <div *ngIf="status=='ok'" class="alert alert-success">
+            {{this.message}}
         </div>
     </form>     
   </div>                     

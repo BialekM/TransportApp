@@ -180,25 +180,36 @@ namespace TransportApp.Services
         public CarStatus AddFuel(int carId, Fuel fuel)
         {
             CarStatus carStatus = new CarStatus();
-            if (_context.Faults.Count(c => c.CarId.Equals(carId)) > 0 && _context.Fuels.Count(c => c.FuelId.Equals(fuel.FuelId)) > 0)
+            try
             {
-                _context.Fuels.Update(fuel);
-                _context.SaveChangesAsync();
-                carStatus.Message = "Tankowanie zaktualizowane pomyślnie";
-                carStatus.Status = "ok";
-            }
-            else if (_context.Cars.Count(c => c.Id.Equals(carId)) > 0)
-            {
-                _context.Fuels.Add(fuel);
-                _context.SaveChangesAsync();
-                carStatus.Message = "Tankowanie dodano pomyślnie";
-                carStatus.Status = "ok";
+                if (_context.Faults.Count(c => c.CarId.Equals(carId)) > 0 &&
+                    _context.Fuels.Count(c => c.FuelId.Equals(fuel.FuelId)) > 0)
+                {
+                    _context.Fuels.Update(fuel);
+                    _context.SaveChangesAsync();
+                    carStatus.Message = "Tankowanie zaktualizowane pomyślnie";
+                    carStatus.Status = "ok";
+                }
+                else if (_context.Cars.Count(c => c.Id.Equals(carId)) > 0)
+                {
+                    _context.Fuels.Add(fuel);
+                    _context.SaveChangesAsync();
+                    carStatus.Message = "Tankowanie dodano pomyślnie";
+                    carStatus.Status = "ok";
 
+                }
+                else
+                {
+                    carStatus.Message = "Nie udało się dodać tankowania";
+                    carStatus.Status = "Failed";
+                    return carStatus;
+                }
             }
-            else
+            catch(Exception e)
             {
-                carStatus.Message = "Nie udało się dodać tankowania";
+                carStatus.Message = e.Message;
                 carStatus.Status = "Failed";
+                return carStatus;
             }
             return carStatus;
         }

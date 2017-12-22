@@ -4,7 +4,7 @@ enum UserType{
     Boss,Mechanic,Worker
 }
 export class User{
-    id: number;
+    id: string;
     pesel: number;
     userName : string;
     userType: UserType;

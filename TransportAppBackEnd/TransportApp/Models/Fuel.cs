@@ -17,5 +17,7 @@ namespace TransportApp.Models
         public int UserId { get; set; }
         public double NumberOfLitres { get; set; }
         public double Price { get; set; }
+        public string UserName { get; set; }
+        public string Surname { get; set; }
     }
 }

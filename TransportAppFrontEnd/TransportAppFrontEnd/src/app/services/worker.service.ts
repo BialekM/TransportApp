@@ -11,7 +11,7 @@ export class WorkerService {
   AddWorker(user: User): Promise<CarStatus>{
     return this.http.post('http://localhost:54117/AddUser', JSON.stringify({pesel : user.pesel, userName: user.userName,
     userType: user.userType,
-    login: user.login, password: user.password, surname: user.surname}),
+    login: user.login, password: user.password, surname: user.surname, id : user.id}),
     { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
      then(response => {
       let y = response.json();
@@ -25,7 +25,7 @@ export class WorkerService {
     });
   
   }
-  GetUser(id: number): Promise<User>{
+  GetUser(id: string): Promise<User>{
     return this.http.get('http://localhost:54117/GetUser/'+ id).toPromise().then((response: Response)=>{
       return response.json() as User;
     })

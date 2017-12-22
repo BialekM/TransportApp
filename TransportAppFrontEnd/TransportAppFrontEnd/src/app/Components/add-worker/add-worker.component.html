@@ -1,53 +1,89 @@
 <div class="container">
-  <div id="loginBox" class="mainbox" >
+  <div id="loginBox" class="mainbox">
     <div class="panel-heading">
       <div class="panel-title">Dodawanie Użytkownika</div>
     </div>
-  <div class="panel-body">
-      <form #AddUserForm="ngForm" (ngSubmit)="onSubmit(AddUserForm)" class="form-horizontal" role="form" novalidate >
-          <H2><label>Uzytkownik</label></H2>
-        
-          <div class="input-group">
-            <label>Imie</label>
-            <input type="text" class="form-control" required name="userName" placeholder="Imie" [(ngModel)]="user.userName">
-          </div>
-        
-          <div class="input-group">
-          <label>Nazwisko</label>
-          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" required [(ngModel)]="user.surname">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <form #AddUserForm="ngForm" (ngSubmit)="onSubmit(AddUserForm)" class="form-horizontal" role="form" novalidate>
+        <H2>
+          <label>Uzytkownik</label>
+        </H2>
+        <label>Imie</label>
+        <div class="input-group">
+          <input type="text" class="form-control" required name="userName" ngModel #UserName="ngModel" placeholder="Imie" 
+          [(ngModel)]="user.userName">
         </div>
-          
-        <div class="input-group">
-            <label>Pesel</label>
-            <input type="number" class="form-control" name="pesel" placeholder="pesel" required [(ngModel)]="user.pesel">
-          </div>
-
-        <div class="input-group">
-          <label>Login</label>
-          <input type="text" class="form-control" name="login" placeholder="login" required [(ngModel)]="user.login">
-        </div>
-  
-        <div class="input-group">
-          <label>Hasło</label>
-          <input type="password" class="form-control" name="password" placeholder="Hasło" required [(ngModel)]="user.password">
+        <div *ngIf=" (UserName.touched && IsEmptyParam(user.userName)) || !((UserName.valid) || (UserName.pristine))" class="alert alert-danger">
+          Imie jest wymagane
         </div>
 
+        <label>Nazwisko</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" ngModel #Surname="ngModel" required [(ngModel)]="user.surname">
+        </div>
+        <div *ngIf=" (Surname.touched && IsEmptyParam(user.surname)) || !((Surname.valid) || (Surname.pristine))" class="alert alert-danger">
+          Nazwisko jest wymagane
+        </div>
+
+        <label>Pesel</label>
+        <div class="input-group">
+          <input type="number" class="form-control" name="pesel" placeholder="pesel" required ngModel #Pesel="ngModel" [(ngModel)]="user.pesel">
+        </div>
+        <div *ngIf=" (Pesel.touched && IsEmptyParam(user.pesel)) || !((Pesel.valid) || (Pesel.pristine))" class="alert alert-danger">
+          Pesel jest wymagany
+        </div>
+
+
+        <label>Login</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="login" placeholder="login" required ngModel #Login="ngModel" [(ngModel)]="user.login">
+        </div>
+        <div *ngIf=" (Login.touched && IsEmptyParam(user.login)) || !((Login.valid) || (Login.pristine))" class="alert alert-danger">
+          Login jest wymagany
+        </div>
+        <div *ngIf="IdZero()">
+        <label>Hasło</label>
+        <div class="input-group">
+          <input type="password" class="form-control" name="password" placeholder="Hasło" required ngModel #Password="ngModel" [(ngModel)]="user.password">
+        </div>
+        <div *ngIf=" (Password.touched && IsEmptyParam(user.password)) || !((Password.valid) || (Password.pristine))" class="alert alert-danger">
+          Hasło jest wymagane
+        </div>
+        </div>
+        <div *ngIf="IdZero()">
         <div class="input-group">
           <label>Potwierdzenie Hasła</label>
-          <input type="password" class="form-control" name="confirmPassword" placeholder="Powrórz hasło" required ngModel #confirmPassword="ngModel">
+          <input type="password" class="form-control" name="confirmPassword" placeholder="Powrórz hasło" required ngModel #ConfirmPassword="ngModel">
         </div>
-        
+        <div *ngIf=" (ConfirmPassword.touched && IsEmpty(ConfirmPassword)) || !((ConfirmPassword.valid) || (ConfirmPassword.pristine))"
+          class="alert alert-danger">
+          Potwierdzenie hasła jest wymagane
+        </div>
+      </div>
         <label>Typ</label>
-          <select class="form-control" name="userType" placeholder="Typ użytkownika" required [(ngModel)]="userType">
-            <option value="Boss">Szef</option>
-            <option value="Mechanic">Mechanik</option>
-            <option value="Worker">Pracownik</option>
-          </select>
-
-        <div class="form-group">
-          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
+        <select class="form-control" name="userType" placeholder="Typ użytkownika" ngModel #UserType="ngModel" required [(ngModel)]="userType">
+          <option value="Boss">Szef</option>
+          <option value="Mechanic">Mechanik</option>
+          <option value="Worker">Pracownik</option>
+        </select>
+        <div *ngIf=" (UserType.touched && IsEmptyParam(user.userType)) || !((UserType.valid) || (UserType.pristine))" class="alert alert-danger">
+          Typ użytkownika jest wymagany
         </div>
-    </form>     
-  </div>                     
-  </div>  
+        <div class="form-group">
+          <button valid type="submit" class="btn btn-primary center-block" (click)="ButtonClicked()">
+            <b> Zatwierdź i wyślij</b>
+          </button>
+        </div>
+        <div *ngIf="AddUserForm.invalid && buttonClicked" class="alert alert-danger">
+          Nie wypełniono wszystkich pól
+        </div>
+        <div *ngIf="status=='Failed'" class="alert alert-danger">
+          {{this.message}}
+        </div>
+        <div *ngIf="status=='Ok'" class="alert alert-success">
+          {{this.message}}
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

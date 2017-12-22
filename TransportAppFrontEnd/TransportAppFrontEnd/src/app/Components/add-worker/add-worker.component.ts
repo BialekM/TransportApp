@@ -9,32 +9,79 @@ import { User } from '../../Models/User';
   styleUrls: ['./add-worker.component.css']
 })
 export class AddWorkerComponent implements OnInit {
+  id: string;
   user: User;
-  constructor(private WorkerService: WorkerService, private route: ActivatedRoute) { }
+  message = '';
+  status = '';
+  buttonClicked = false;
+  constructor(private workerService: WorkerService, private route: ActivatedRoute) {
+    this.user = new User();
+   }
   userType: string;
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-    if(id>0){
-      this.WorkerService.GetUser(id).then(r=>{
+    this.id = (this.route.snapshot.params['id']).toString();
+    if(this.id!="0"){
+      this.workerService.GetUser(this.id).then(r=>{
       this.user = r;
+      console.log(this.user.userName);
       this.userType = r.userType.toString();
       if(r.userType.toString()=="0"){
         this.userType="Boss";
+        this.user.userType =0;
       }
       if(r.userType.toString()=="1"){
         this.userType="Mechanic";
+        this.user.userType=1;
       }
       if(r.userType.toString()=="2"){
         this.userType="Worker";
+        this.user.userType=3;
       }
     })
   }else{
     this.user = new User();
-  }  
+  }
   }
 
   onSubmit(form: NgForm): void {
-    this.WorkerService.AddWorker(form.value);
+    if (form.valid) {
+      this.user = form.value;
+      this.user.id = this.id;
+      this.workerService.AddWorker(this.user).then(Response => {
+        this.message = Response.message;
+        console.log(this.message);
+        this.status = Response.status;
+        console.log(this.status)
+      });
+    }else {
+      return;
+    }
   }
 
+  IsEmptyParam(parametr: string){
+    if(parametr===undefined){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  ButtonClicked() {
+    this.buttonClicked = true;
+  }
+
+  IsEmpty(element: HTMLInputElement) {
+    if (element.value === '') {
+      return true;
+    }
+  }
+  IdZero(){
+    if(this.id!=="0"){
+      console.log(this.id);
+      return false;
+    }else{
+      return true;
+    }
+
+  }
 }

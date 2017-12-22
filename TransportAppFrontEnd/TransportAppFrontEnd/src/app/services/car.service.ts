@@ -105,16 +105,17 @@ export class CarService {
   }
 
   DeleteFault( faultIdd: number): Promise<Boolean>{
-    return this.http.post("http://localhost:54117/DeleteFault", faultIdd, { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    return this.http.post("http://localhost:54117/DeleteFault", faultIdd,
+    { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
     then(response => {
     let y = response.json();
     return y;
   });
   }
 
-  AddFuel(fuel: Fuel,carIdd: number, fuelIdd:number): Promise<CarStatus>{
-    return this.http.post("http://localhost:54117/AddFuel", JSON.stringify({fuelId : fuelIdd, dateOfFuel: fuel.dateOfFuel, carId: carIdd,
-    userId: fuel.userId, numberOfLitres: fuel.numberOfLitres, price: fuel.price
+  AddFuel(fuel: Fuel): Promise<CarStatus>{
+    return this.http.post("http://localhost:54117/AddFuel", JSON.stringify({fuelId : fuel.fuelid, dateOfFuel: fuel.dateOfFuel,
+    carId: fuel.carId, numberOfLitres: fuel.numberOfLitres, price: fuel.price, userName: fuel.userName, surname: fuel.surname
     }), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
     then(response => {
     let y = response.json();

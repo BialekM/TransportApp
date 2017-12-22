@@ -22,49 +22,75 @@ namespace TransportApp.Services
 
         public async Task<UserStatus> AddUser(User model)
         {
-            var user = await _userMgr.FindByNameAsync(model.UserName);
-            if (user == null)
+            try
             {
-//                if (!await _roleMgr.RoleExistsAsync("Admin"))
-//                {
-//                    var role = new IdentityRole("Admin");
-////                    role. Claims.Add(new IdentityRoleClaim<string> { ClaimType = "IsAdmin", ClaimValue = "True" });
-//                    await _roleMgr.CreateAsync(role);
-//                }
-
-                user = new User
+                if (model.Id == "0")
                 {
-                    Pesel = model.Pesel,
-                    UserName = model.UserName,
-                    UserType = model.UserType,
-                    Surname = model.Surname,
-                    Login = model.Login,
-                };
-                var userResult = await _userMgr.CreateAsync(user, model.Password);
-//                var roleResult = await _userMgr.AddToRoleAsync(user, "Admin");
-//                var claimResult = await _userMgr.AddClaimAsync(user, new Claim("SuperUser", "True"));
+                    var user = await _userMgr.FindByIdAsync(model.Id);
+                    if (user == null)
+                    {
+                        user = new User
+                        {
+                            Pesel = model.Pesel,
+                            UserName = model.UserName,
+                            UserType = model.UserType,
+                            Surname = model.Surname,
+                            Login = model.Login,
+                        };
+                        await _userMgr.CreateAsync(user, model.Password);
+                        UserStatus status = new UserStatus()
+                        {
+                            Pesel = model.Pesel,
+                            Message = "Pomyślnie dodano użytkownika",
+                            Status = "Ok"
 
-                //                if (!userResult.Succeeded || !roleResult.Succeeded || !claimResult.Succeeded)
-                //                {
-                //                    throw new InvalidOperationException("Failed to build user and roles");
-                //                }
-                UserStatus status = new UserStatus()
+                        };
+                        return status;
+
+                    }
+                    else
+                    {
+                        UserStatus badstatus = new UserStatus()
+                        {
+                            Pesel = model.Pesel,
+                            Message = "Nie udało się dodać użytkownika",
+                            Status = "Failed"
+                        };
+                        return badstatus;
+                    }
+                }
+                else
                 {
-                    Pesel = model.Pesel,
-                    Message = "Spoko",
-                    Status = "ok"
-
-                };
-                return status;
+                    var user = await _userMgr.FindByIdAsync(model.Id);
+                    user.Login = model.Login;
+                    user.UserName = model.UserName;
+                    user.Surname = model.Surname;
+                    user.Pesel = model.Pesel;
+                    user.UserType = model.UserType;
+                    model.Password = user.Password;
+                    await _userMgr.UpdateAsync(user);
+                    UserStatus status = new UserStatus()
+                    {
+                        Pesel = model.Pesel,
+                        Message = "Pomyślnie zaktualizowano użytkownika",
+                        Status = "Ok"
+                    };
+                    return status;
+                }
 
             }
-            UserStatus badstatus = new UserStatus()
+            catch (Exception e)
             {
-                Pesel = model.Pesel,
-                Message = "Spoko",
-                Status = "Bad"
-            };
-            return badstatus;
+                UserStatus badstatus = new UserStatus()
+                {
+                    Pesel = model.Pesel,
+                    Message = e.Message,
+                    Status = "Failed"
+                };
+                return badstatus;
+            }
+
+
         }
 
     public List<User> GetUsers()

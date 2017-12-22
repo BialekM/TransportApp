@@ -14,6 +14,9 @@ export class FuelComponent implements OnInit {
   carId: number;
   fuelId: number;
   fuel: Fuel;
+  message = '';
+  status = '';
+  buttonClicked = false;
   constructor(private carService: CarService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -28,7 +31,28 @@ export class FuelComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    this.carService.AddFuel(form.value,this.carId,this.fuelId);
+    if (form.valid) {
+      this.fuel = form.value;
+      this.fuel.fuelid = this.fuelId;
+      this.fuel.carId = this.carId;
+      this.carService.AddFuel(this.fuel).then(Response => {
+        this.message = Response.message;
+        this.status = Response.status;
+      });
+    }else {
+      return;
+    }
   }
 
+  ButtonClicked() {
+    this.buttonClicked = true;
+  }
+
+  IsEmptyParam(parametr: string){
+    if(parametr===undefined){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

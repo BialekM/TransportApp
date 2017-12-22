@@ -13,8 +13,11 @@ export class FaultComponent implements OnInit {
   carId: number;
   faultId: number;
   fault: Fault;
+  message = '';
+  status = '';
+  buttonClicked = false;
   constructor(private carService: CarService, private route: ActivatedRoute) { }
- 
+  
 
   ngOnInit() {
    this.carId = +this.route.snapshot.params['id'];
@@ -26,9 +29,33 @@ export class FaultComponent implements OnInit {
         });
       }
   }
-
   onSubmit(form: NgForm): void {
-    console.log(form.value);
-    this.carService.AddFault(form.value,this.carId,this.faultId);
+    if (form.valid) {
+      this.fault = form.value;
+      this.fault.faultId = this.faultId;
+      this.fault.carId = this.carId;
+      this.carService.AddFault(this.fault, this.carId, this.faultId).then(Response => {
+        this.message = Response.message;
+        console.log(this.message);
+        this.status = Response.status;
+        console.log(this.status);
+      });
+    }else {
+      return;
+    }
+  }
+
+
+  ButtonClicked() {
+    this.buttonClicked = true;
+  }
+
+  IsEmptyParam(parametr: string){
+    if(parametr===undefined){
+      return true;
+    }else{
+      console.log(this.fault.faultInformation);
+      return false;
+    }
   }
 }
