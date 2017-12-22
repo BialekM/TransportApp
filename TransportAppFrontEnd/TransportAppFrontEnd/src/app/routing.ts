@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent} from './app.component';
 import {MainCarsComponent} from './Components/main-cars/main-cars.component';
-import { AddCarComponent } from './Components/add-car/add-car.component';
 import { AddWorkerComponent } from './Components/add-worker/add-worker.component';
 import { GetUsersComponent } from './Components/get-users/get-users.component';
 import { CarComponent } from './Components/car/car.component';
@@ -15,7 +14,7 @@ import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
     { path: '', redirectTo: '/Login', pathMatch: 'full' },
     { path: 'GetCars', component: MainCarsComponent, canActivate: [AuthGuard], data: {roles: ['Admin']}},
-    { path: 'AddCar', component: AddCarComponent, canActivate: [AuthGuard], data: {roles: ['Admin']}},
+    // { path: 'AddCar', component: AddCarComponent, canActivate: [AuthGuard], data: {roles: ['Admin']}},
     { path: 'GetUsers', component: GetUsersComponent, canActivate: [AuthGuard], data: {roles: ['Admin']}},
     { path: 'GetCar/:id', component: CarComponent, canActivate: [AuthGuard], data: {roles: ['Admin']}},
     { path: 'AddWorker/:id', component: AddWorkerComponent, canActivate: [AuthGuard], data: {roles: ['Admin']}},

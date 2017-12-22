@@ -1,113 +1,140 @@
 <div class="container">
-  <div id="loginBox" class="mainbox" >
-    <div class="panel-heading">
-      <div class="panel-title">Dodawanie Samochodu</div>
-    </div>
-  <div class="panel-body">
-      <form #EditCarForm="ngForm" (ngSubmit)="onSubmit(EditCarForm)" class="form-horizontal"
-       role="form" novalidate >
-          <H2><label>Samochód</label></H2>
-        
-          <div class="input-group">
-            <label>Numer Rejestracyjny</label>
-            <input type="text" class="form-control" required name="registrationNumber" 
-            placeholder="Number Rejestracyjny"  [(ngModel)]="car.registrationNumber">
+    <div id="loginBox" class="mainbox" >
+      <div class="panel-heading">
+        <div class="panel-title">Dodawanie Samochodu</div>
+      </div>
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <form #AddCarForm="ngForm" (ngSubmit)="onSubmit(AddCarForm)" class="form-horizontal" role="form" novalidate >
+            <H2><label>Samochód</label></H2>
+          
+            <div class="input-group">
+              <label class="labeli">Numer Rejestracyjny</label>
+              <input type="text" class="form-control" required name="registrationNumber" placeholder="Number Rejestracyjny"  ngModel #registrationNumber="ngModel" [(ngModel)]="car.registrationNumber">
+              <div *ngIf=" (registrationNumber.touched && IsEmpty(registrationNumber)) || !((registrationNumber.valid) || (registrationNumber.pristine))" class="alert alert-danger">
+                Numer rejestracyjny jest wymagany
+              </div>
+            </div>
+          
+            <div class="input-group">
+            <label class="labeli">Data Przeglądu</label>
+            <input type="date" class="form-control" required name="carReviewDate" placeholder="DD-MM-YYYY" 
+            ngModel #carReviewDateH="ngModel" [(ngModel)]="carReviewDate" >
+            <div *ngIf=" (carReviewDateH.touched && IsEmpty(carReviewDateH)) || !((carReviewDateH.valid) || (carReviewDateH.pristine))" class="alert alert-danger">
+              Data przeglądu jest wymagana
+            </div>
           </div>
-        
+          
           <div class="input-group">
-          <label>Data Przeglądu</label>
-          <input type="date" class="form-control" required name="carReviewDate" placeholder="DD-MM-YYYY" 
-          [(ngModel)]="carReviewDate">
-        </div>
-        
-        <div class="input-group">
-          <label>Nazwa Fabryki</label>
-          <input type="text" class="form-control" name="factory" placeholder="Nazwa Fabryki"
-           required [(ngModel)]="car.factory">
-        </div>
+            <label class="labeli">Fabryka</label>
+            <input type="text" class="form-control" name="factory" placeholder="Nazwa Fabryki" required ngModel #factory="ngModel" [(ngModel)]="car.factory">
+            <div *ngIf=" (factory.touched && IsEmpty(factory)) || !((factory.valid) || (factory.pristine))" class="alert alert-danger">
+              Nazwa fabryki jest wymagana
+            </div>
+          </div>
+    
+          <div class="input-group">
+            <label class="labeli">Towarzystwo Ubezpieczeniowe</label>
+            <input type="text" class="form-control" name="insurer" placeholder="Ubezpieczyciel" required ngModel #insurer="ngModel" [(ngModel)]="car.insurer">
+            <div *ngIf=" (insurer.touched && IsEmpty(insurer)) || !((insurer.valid) || (insurer.pristine))" class="alert alert-danger">
+              Towarzystwo ubezpieczeniowe jest wymagane
+            </div>
+          </div>
   
-        <div class="input-group">
-          <label>Towarzystwo Ubezpieczeniowe</label>
-          <input type="text" class="form-control" name="insurer" placeholder="Ubezpieczyciel"
-          required [(ngModel)]="car.insurer">
+          <div class="input-group">
+            <label class="labeli">Model Samochodu</label>
+            <input type="text" class="form-control" name="model" placeholder="Model samochodu" required ngModel #model="ngModel" [(ngModel)]="car.model">
+            <div *ngIf=" (model.touched && IsEmpty(model)) || !((model.valid) || (model.pristine))" class="alert alert-danger">
+              Model samochodu jest wymkagany
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="labeli">Data zakończenia Oc</label>
+            <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" required ngModel #ocEndDate="ngModel" [(ngModel)]="carOcEndDate">
+            <div *ngIf=" (ocEndDate.touched && IsEmpty(ocEndDate)) || !((ocEndDate.valid) || (ocEndDate.pristine))" class="alert alert-danger">
+              Data Oc jest wymagana
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="labeli">Właściciel</label>
+            <input type="text" class="form-control" name="owner" placeholder="Właściciel Samochodu" required ngModel #owner="ngModel" [(ngModel)]="car.owner">
+            <div *ngIf=" (owner.touched && IsEmpty(owner)) || !((owner.valid) || (owner.pristine))" class="alert alert-danger">
+              Właściciel jest wymagany
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="labeli">Moc samochodu</label>
+            <input id="power" type="text" class="form-control" name="power" pattern="[0-9%]+[0-9%]" placeholder="Moc Samochodu" required ngModel #power="ngModel" [(ngModel)]="car.power">
+            <div *ngIf=" (power.touched && IsEmpty(ocEndDate)) || !((power.valid) || (power.pristine))" class="alert alert-danger">
+              Moc jest wymagana
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="labeli">Typ samochodu</label>
+            <input type="text" class="form-control" name="typeOfCar" placeholder="Typ Samochodu" required ngModel #typeOfCar="ngModel" [(ngModel)]="car.typeOfCar">
+            <div *ngIf=" (typeOfCar.touched && IsEmpty(typeOfCar)) || !((typeOfCar.valid) || (typeOfCar.pristine))" class="alert alert-danger">
+              Typ samochodu jest wymagany
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="labeli">Rok Produkcji</label>
+            <input id="yearOfProduction" type="number" class="form-control" name="yearOfProduction" pattern="[0-9%]+[0-9%]" placeholder="Rocznik Samochodu" required ngModel 
+            #yearOfProduction="ngModel" [(ngModel)]="car.yearOfProduction">
+            <div *ngIf=" (yearOfProduction.touched && IsEmpty(yearOfProduction)) || !((yearOfProduction.valid) || (yearOfProduction.pristine))" class="alert alert-danger">
+              Rok produkcji jest wymagany
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label class="labeli">Numer Vin</label>
+            <input id="vinNumber" type="text" class="form-control" name="vinNumber" placeholder="Numer Vin" required ngModel #vinNumber="ngModel" [(ngModel)]="car.vinNumber">
+            <div *ngIf=" (vinNumber.touched && IsEmpty(vinNumber)) || !((vinNumber.valid) || (vinNumber.pristine))" class="alert alert-danger">
+              Numer vin jest wymagany
+            </div>
+          </div>
+          <h3><input type="checkbox" #udt (change)="0"> Winda Udt</h3>
+          <div *ngIf="udt.checked">
+          <H2><label class="labeli">Udt Elevator</label></H2>
+          <label class="labeli">Udt Elevator Data przeglądu</label>
+          <div class="input-group">
+            <input id="udtElevatorReviewFrom" type="date" class="form-control" name="udtElevatorReviewFrom" placeholder="DD-MM-YYYY" required ngModel #udtElevatorReviewFrom="ngModel" [(ngModel)]="carUdtElevatorReviewFrom">
+          </div>
+          
+          <label class="labeli">Udt Elevator Koniec przeglądu</label>
+          <div class="input-group">
+            <input id="udtElevatorReviewWhen" type="date" class="form-control" name="udtElevatorReviewWhen" placeholder="DD-MM-YYYY" required ngModel #udtElevatorReviewWhen="ngModel" [(ngModel)]="carUdtElevatorReviewWhen">
+          </div>
+          </div>
+          
+          <h3><input type="checkbox" #Tachograf (change)="0"> Tachograf</h3>
+          <div *ngIf="Tachograf.checked">
+          <H2><label class="labeli">Tachograf</label></H2>
+          <label>Tachograf Data przeglądu</label>
+          <div class="input-group">
+            <input id="tachografReviewFrom" type="date" class="form-control" name="tachografReviewFrom" placeholder="DD-MM-YYYY" required ngModel #tachografReviewFrom="ngModel" [(ngModel)]="carTachografReviewFrom">
+          </div>
+          <label class="labeli">Tachograf Koniec przeglądu</label>
+          <div class="input-group">
+            <input id="tachografReviewWhen" type="date" class="form-control" name="tachografReviewWhen" placeholder="DD-MM-YYYY" required ngModel #tachografReviewWhen="ngModel" [(ngModel)]="carTachografReviewWhen">
+          </div>
+  <       </div>
+          <div class="form-group">
+            <button valid type="submit" class="btn btn-primary center-block" (click)="ButtonClicked()" >  <b> Zatwierdź i wyślij</b> </button>
+          </div>  
+      </form>   
+      <div *ngIf="AddCarForm.invalid && buttonClicked" class="alert alert-danger">
+          Nie wypełniono wszystkich pól
         </div>
-
-        <div class="input-group">
-          <label>Model Samochodu</label>
-          <input type="text" class="form-control" name="model" placeholder="Model samochodu" 
-          required [(ngModel)]="car.model">
+      <div *ngIf="status=='Failed'" class="alert alert-danger">
+          {{this.message}}
         </div>
-
-        <div class="input-group">
-          <label>Data zakończenia Oc</label>
-          <input type="date" class="form-control" name="ocEndDate" placeholder="Data konca oc" 
-          required [(ngModel)]="carOcEndDate">
-        </div>
-
-        <div class="input-group">
-          <label>Właściciel</label>
-          <input type="text" class="form-control" name="owner" placeholder="Właściciel Samochodu" 
-          required [(ngModel)]="car.owner">
-        </div>
-
-        <div class="input-group">
-          <label>Moc samochodu</label>
-          <input type="text" class="form-control" name="power" placeholder="Moc Samochodu" 
-          required [(ngModel)]="car.power">
-        </div>
-
-        <div class="input-group">
-          <label>Typ samochodu</label>
-          <input type="text" class="form-control" name="typeOfCar" placeholder="Typ Samochodu" 
-          required [(ngModel)]="car.typeOfCar">
-        </div>
-
-        <div class="input-group">
-          <label>Data Produkcji</label>
-          <input type="number" class="form-control" name="yearOfProduction" 
-          placeholder="Rocznik Samochodu" required [(ngModel)]="car.yearOfProduction">
-        </div>
-
-        <div class="input-group">
-          <label>Numer Vin</label>
-          <input type="text" class="form-control" name="vinNumber" 
-          placeholder="Numer Vin" required [(ngModel)]="car.vinNumber">
-        </div>
-        <H2><label>Udt Elevator</label></H2>
-        <label>Udt Elevator Data przeglądu</label>
-        <div class="input-group">
-          <input type="date" class="form-control" 
-          name="udtElevatorReviewFrom" placeholder="DD-MM-YYYY" required 
-          [(ngModel)]="carUdtElevatorReviewFrom">
-        </div>
-        
-        <label>Udt Elevator Koniec przeglądu</label>
-        <div class="input-group">
-          <input type="date" class="form-control" 
-          name="udtElevatorReviewWhen" placeholder="DD-MM-YYYY" 
-          required [(ngModel)]="carUdtElevatorReviewWhen">
-        </div>
-        
-        
-        <H2><label>Tachograf</label></H2>
-        <label>Tachograf Data przeglądu</label>
-        <div class="input-group">
-          <input type="date" class="form-control"
-          name="tachografReviewFrom" placeholder="DD-MM-YYYY" required [(ngModel)]="carTachografReviewFrom">
-        </div>
-        
-        <label>Tachograf Koniec przeglądu</label>
-        <div class="input-group">
-          <input type="date" class="form-control" name="tachografReviewWhen" 
-          placeholder="DD-MM-YYYY" required [(ngModel)]="carTachografReviewWhen">
-        </div>
-
-        <div class="form-group">
-          <button valid type="submit" class="btn btn-primary" >  <b> Zatwierdź i wyślij</b> </button>
-        </div>
-        
-        
-    </form>     
-  </div>                     
-  </div>  
-</div>
+        <div *ngIf="status=='ok'" class="alert alert-success">
+            {{this.message}}
+          </div>         
+    </div>                     
+    </div>  
+  </div>

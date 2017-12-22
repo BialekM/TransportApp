@@ -26,7 +26,26 @@ namespace TransportApp.Controllers
         [EnableCors("AllowSpecificOrigin")]
         public CarStatus AddCar([FromBody]Car car)
         {
-            return _carService.AddCar(car);
+            try
+            {
+                return _carService.AddCar(car);
+            }
+            catch
+            {
+                CarStatus status = new CarStatus();
+                status.Message = "Cos poszlo nie tak";
+                status.Status = "Failed";
+                status.RegistrationNumber = car.RegistrationNumber;
+                return status;
+            }
+            
+        }
+
+        [Route("DeleteCar"), HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
+        public CarStatus DeleteCar([FromBody] Car car)
+        {
+            return _carService.DeleteCar(car);
         }
 
         [Route("AddFault"), HttpPost]
@@ -49,6 +68,13 @@ namespace TransportApp.Controllers
         public Car GetCar(int id)
         {
             return _carService.GetCar(id);
+        }
+
+        [Route("DeleteFault"), HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
+        public Boolean DeleteFault([FromBody] int faultId)
+        {
+            return _carService.DeleteFault(faultId);
         }
 
         [Route("GetCarFaultList/{id}"), HttpGet]

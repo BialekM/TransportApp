@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +35,8 @@ namespace TransportApp
                     .AllowAnyHeader();
             }));
             services.AddMvc();
-            var connectionString = "Server=DESKTOP-NBCKI9K\\SQLEXPRESS;Database=TransportApp;Trusted_Connection=True;";
+            var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+
             services.AddDbContext<TransportAppContext>(o => o.UseSqlServer(connectionString));
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<IUserService, UserService>();

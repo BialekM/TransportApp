@@ -1,32 +1,40 @@
  main-cars works!
- <table class="table">
- <thead>
-  <tr>
-    <th>Numer Rejestracyjny</th>
-    <th>Typ</th>
-    <th>Model</th>
-    <th>Rok Produkcji</th>
-    <th>Moc</th>
-    <th>Data przeglądu</th>
-    <th>Koniec Oc</th>
-  </tr>
-</thead>
-<tbody *ngFor="let car of carList; let i = index">
-  <tr>
-  <th>{{car.registrationNumber}}</th>
-  <th>{{car.typeOfCar}}</th>
-  <th>{{car.model}}</th>
-  <th>{{car.yearOfProduction}}</th>
-  <th>{{car.power}} kw</th>
-  <th>{{car.carReviewDate | date: 'dd/MM/yyyy'}}</th>
-  <th>{{car.ocEndDate | date: 'dd/MM/yyyy' }}</th>
-  <th><a [routerLink]="['/GetCar', car.id]"> Edytuj auto </a> </th>
-  <th><a [routerLink]="['/CarFaults', car.id]"> Naprawy </a> </th>
-  <th><a [routerLink]="['/GetFuels', car.id]"> Tankowania </a> </th>
-  </tr>
-  <tr *ngIf="DateAregood(i)">Niedługo kończy się przegląd</tr>
-</tbody>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Numer Rejestracyjny</th>
+      <th>Typ</th>
+      <th>Model</th>
+      <th>Rok Produkcji</th>
+      <th>Moc</th>
+      <th>Data przeglądu</th>
+      <th>Koniec Oc</th>
+    </tr>
+  </thead>
+  <tbody class="tabelka" *ngFor="let car of carList; let i = index">
+    <tr>
+      <th>{{car.registrationNumber}}</th>
+      <th>{{car.typeOfCar}}</th>
+      <th>{{car.model}}</th>
+      <th>{{car.yearOfProduction}}</th>
+      <th>{{car.power}} kw</th>
+      <th>{{car.carReviewDate | date: 'dd/MM/yyyy'}}</th>
+      <th>{{car.ocEndDate | date: 'dd/MM/yyyy' }}</th>
+      <th>
+        <a [routerLink]="['/GetCar', car.id]"> Edytuj auto </a>
+      </th>
+      <th>
+        <a [routerLink]="['/CarFaults', car.id]"> Naprawy </a>
+      </th>
+      <th>
+        <a [routerLink]="['/GetFuels', car.id]"> Tankowania </a>
+      </th>
+      <th> <button (click)=DeleteCar(i)>usun</button></th>
+    </tr>
+    <td colspan="11">
+    <div *ngIf="DateAregood(i)"class="alert alert-danger text-center">
+      {{message}}
+    </div>
+    </td>
+  </tbody>
 </table>
-
-  
-

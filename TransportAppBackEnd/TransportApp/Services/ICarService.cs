@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TransportApp.Models;
 
 namespace TransportApp.Services
@@ -16,5 +14,7 @@ namespace TransportApp.Services
         CarStatus AddFault(int carId, Fault fault);
         List<Fuel> GetFuelList(int id);
         CarStatus AddFuel(int carId, Fuel fuel);
+        CarStatus DeleteCar(Car car);
+        Boolean DeleteFault(int faultId);
     }
 }

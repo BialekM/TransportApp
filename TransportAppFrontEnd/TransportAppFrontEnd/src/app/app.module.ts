@@ -6,7 +6,6 @@ import {routes} from './routing';
 import { AppComponent } from './app.component';
 import { CarService } from './services/car.service';
 import { AdministratorMenuPanelComponent } from './Components/administrator-menu-panel/administrator-menu-panel.component';
-import { AddCarComponent } from './Components/add-car/add-car.component';
 import { MainCarsComponent } from './Components/main-cars/main-cars.component';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -28,7 +27,6 @@ import { AuthGuard } from './auth.guard';
   declarations: [
     AppComponent,
     AdministratorMenuPanelComponent,
-    AddCarComponent,
     MainCarsComponent,
     AddWorkerComponent,
     GetUsersComponent,

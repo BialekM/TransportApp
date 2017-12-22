@@ -16,18 +16,43 @@ export class CarService {
 
   public carList: Car[];
 
-  AddCar(addCarModel: Car): Promise<CarStatus>{
+
+  DeleteCar(carModel: Car): Promise<CarStatus>{
     const headers =  new Headers({ 'Content-Type': 'application/json'});
-    return this.http.post("http://localhost:54117/AddCar", JSON.stringify({registrationNumber : addCarModel.registrationNumber, typeOfCar: addCarModel.typeOfCar, Model: addCarModel.model,
-    YearOfProduction: addCarModel.yearOfProduction, Power: addCarModel.power, vinNumber: addCarModel.vinNumber, Factory: addCarModel.factory, CarReviewDate: addCarModel.carReviewDate ,
-    OcEndDate: addCarModel.ocEndDate, Insurer: addCarModel.insurer,UdtElevatorReviewWhen : addCarModel.udtElevatorReviewWhen, UdtElevatorReviewFrom: addCarModel.udtElevatorReviewFrom, 
-     TachografReviewWhen: addCarModel.tachografReviewWhen, TachografReviewFrom: addCarModel.tachografReviewFrom,FaultList: null ,Owner: addCarModel.owner}), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
-     then(response => {
-      var y = response.json();
+    return this.http.post('http://localhost:54117/DeleteCar', JSON.stringify({registrationNumber : carModel.registrationNumber,
+    id: carModel.id,
+    typeOfCar: carModel.typeOfCar, Model: carModel.model,
+    YearOfProduction: carModel.yearOfProduction, Power: carModel.power,
+    vinNumber: carModel.vinNumber, Factory: carModel.factory,
+    CarReviewDate: carModel.carReviewDate ,
+    OcEndDate: carModel.ocEndDate,
+    Insurer: carModel.insurer, UdtElevatorReviewWhen : carModel.udtElevatorReviewWhen,
+    UdtElevatorReviewFrom: carModel.udtElevatorReviewFrom,
+    TachografReviewWhen: carModel.tachografReviewWhen, TachografReviewFrom: carModel.tachografReviewFrom,
+    FaultList: null , Owner: carModel.owner}), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    then(response => {
+      const y = response.json();
       return y;
   });
   }
-  
+  AddCar(addCarModel: Car): Promise<CarStatus>{
+    const headers =  new Headers({ 'Content-Type': 'application/json'});
+    return this.http.post('http://localhost:54117/AddCar', JSON.stringify({registrationNumber : addCarModel.registrationNumber,
+    id: addCarModel.id,
+    typeOfCar: addCarModel.typeOfCar, Model: addCarModel.model,
+    YearOfProduction: addCarModel.yearOfProduction, Power: addCarModel.power,
+    vinNumber: addCarModel.vinNumber, Factory: addCarModel.factory,
+    CarReviewDate: addCarModel.carReviewDate ,
+    OcEndDate: addCarModel.ocEndDate,
+    Insurer: addCarModel.insurer, UdtElevatorReviewWhen : addCarModel.udtElevatorReviewWhen,
+    UdtElevatorReviewFrom: addCarModel.udtElevatorReviewFrom,
+    TachografReviewWhen: addCarModel.tachografReviewWhen, TachografReviewFrom: addCarModel.tachografReviewFrom,
+    FaultList: null , Owner: addCarModel.owner}), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    then(response => {
+      const y = response.json();
+      return y;
+  });
+  }
   GetCars(): Promise<Car[]> {
     return this.http.get('http://localhost:54117/GetCars').toPromise().then((response: Response) => {
     this.carList = response.json();
@@ -55,7 +80,7 @@ export class CarService {
   }
 
   GetCarFuelList(carId: number): Promise<Fuel[]>{
-    return this.http.get('http://localhost:54117/GetCarFuelList/'+ carId).toPromise().then((response:Response)=>{
+    return this.http.get('http://localhost:54117/GetCarFuelList/'+ carId).toPromise().then((response:Response) =>{
       console.log(response);
       return response.json() as Fuel[];
     })
@@ -69,11 +94,20 @@ export class CarService {
   }
 
   AddFault(fault: Fault,carIdd: number, faultIdd:number): Promise<CarStatus>{
-    return this.http.post("http://localhost:54117/AddFault", JSON.stringify({faultInformation : fault.faultInformation, priority: fault.priority, mechanicDone: fault.mechanicDone,
+    return this.http.post("http://localhost:54117/AddFault", JSON.stringify({faultInformation : fault.faultInformation,
+    priority: fault.priority, mechanicDone: fault.mechanicDone,
     confirmDone: fault.confirmDone, carId: carIdd, faultId: faultIdd
     }), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
     then(response => {
-    var y = response.json();
+    let y = response.json();
+    return y;
+  });
+  }
+
+  DeleteFault( faultIdd: number): Promise<Boolean>{
+    return this.http.post("http://localhost:54117/DeleteFault", faultIdd, { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    then(response => {
+    let y = response.json();
     return y;
   });
   }
@@ -83,15 +117,13 @@ export class CarService {
     userId: fuel.userId, numberOfLitres: fuel.numberOfLitres, price: fuel.price
     }), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
     then(response => {
-    var y = response.json();
+    let y = response.json();
     return y;
   });
   }
 
 
 }
-  
-  
   // EditPersonalData(editData: EditData): Promise<EditData> {
   //   return this.http.post(environment.baseUrl + 'account/editprofile', JSON.stringify({
   //     FirstName: editData.FirstName, LastName: editData.LastName, ActualPassword: editData.ActualPassword,

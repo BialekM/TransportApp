@@ -17,6 +17,7 @@
    <th>{{fault.confirmDone}}</th>
    <th>{{fault.mechanicDone}}</th>
    <th><a [routerLink]="['Fault/', fault.faultId]"> Edytuj Naprawę </a> </th>
+   <th><button (click)=DeleteFault(i)>Usun naprawę</button></th>
    </tr>
  </tbody>
  </table>
