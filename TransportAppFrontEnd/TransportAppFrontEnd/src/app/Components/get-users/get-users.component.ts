@@ -28,5 +28,12 @@ export class GetUsersComponent implements OnInit {
       return "Worker"
     }
   }
+  DeleteUser(i){
+    this.workerService.DeleteWorker(this.userList[i]).then(r => {
+      if(r === true){
+        this.userList.splice(i, 1);
+      }
+    })
+  }
 
 }

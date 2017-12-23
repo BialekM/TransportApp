@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TransportApp.Models;
 
@@ -9,5 +10,6 @@ namespace TransportApp.Services
         Task<UserStatus> AddUser(User model);
         List<User> GetUsers();
         User GetUser(string id);
+        Task<Boolean> DeleteUser(User model);
     }
 }

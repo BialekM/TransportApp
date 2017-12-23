@@ -93,6 +93,20 @@ namespace TransportApp.Services
 
         }
 
+        public async Task<Boolean> DeleteUser(User model)
+        {
+            var user = await _userMgr.FindByIdAsync(model.Id);
+            if (user != null)
+            {
+                await _userMgr.DeleteAsync(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     public List<User> GetUsers()
         {
             List<User> ListOfUsers = _context.Users.ToList();

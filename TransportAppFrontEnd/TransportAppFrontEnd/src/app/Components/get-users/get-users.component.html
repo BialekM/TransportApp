@@ -14,6 +14,7 @@
    <th>{{CheckUserType(user.userType)}}</th>
    <th>{{user.pesel}}</th>
    <th><a [routerLink]="['/AddWorker/', user.id]"> Edytuj Użytkownika </a> </th>
+   <th><button class="btn btn-danger" (click)=DeleteUser(i)>Usun użytkownika</button></th>
    </tr>
  </tbody>
  </table>

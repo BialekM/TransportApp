@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -33,5 +34,13 @@ namespace TransportApp.Controllers
         {
             return _userService.GetUser(id);
         }
+
+        [Route("DeleteUser"), HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
+        public Task<Boolean> DeleteUser([FromBody]User user)
+        {
+            return _userService.DeleteUser(user);
+        }
+
     }
 }

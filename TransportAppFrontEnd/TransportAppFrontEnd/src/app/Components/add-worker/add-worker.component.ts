@@ -14,6 +14,7 @@ export class AddWorkerComponent implements OnInit {
   message = '';
   status = '';
   buttonClicked = false;
+  confirmPassword = '';
   constructor(private workerService: WorkerService, private route: ActivatedRoute) {
     this.user = new User();
    }
@@ -44,7 +45,7 @@ export class AddWorkerComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    if (form.valid) {
+    if (form.valid && this.TheSamePassword(this.confirmPassword,this.user.password)){
       this.user = form.value;
       this.user.id = this.id;
       this.workerService.AddWorker(this.user).then(Response => {
@@ -82,6 +83,13 @@ export class AddWorkerComponent implements OnInit {
     }else{
       return true;
     }
+  }
 
+  TheSamePassword(password:String, confirmPassword: String){
+    if(password===confirmPassword){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

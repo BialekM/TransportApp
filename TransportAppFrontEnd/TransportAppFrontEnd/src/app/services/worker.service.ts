@@ -23,11 +23,21 @@ export class WorkerService {
     return this.http.get('http://localhost:54117/GetUsers').toPromise().then((response: Response) => {
     return response.json() as User[];
     });
-  
   }
   GetUser(id: string): Promise<User>{
     return this.http.get('http://localhost:54117/GetUser/'+ id).toPromise().then((response: Response)=>{
       return response.json() as User;
-    })
+    });
+  }
+
+  DeleteWorker(user: User): Promise<Boolean>{
+    return this.http.post('http://localhost:54117/DeleteUser', JSON.stringify({pesel : user.pesel, userName: user.userName,
+    userType: user.userType,
+    login: user.login, password: user.password, surname: user.surname, id : user.id}),
+    { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+     then(response => {
+      let y = response.json();
+      return y;
+  });
   }
 }
