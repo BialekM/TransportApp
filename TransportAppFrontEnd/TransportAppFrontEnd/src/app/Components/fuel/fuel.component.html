@@ -1,7 +1,7 @@
 <div class="container">
   <div id="loginBox" class="mainbox" >
     <div class="panel-heading">
-      <div class="panel-title">Dodawanie Użytkownika</div>
+      <div class="panel-title">Dodawanie Tankowania</div>
     </div>
     <div class="col-sm-6 col-md-4 col-md-offset-4">
       <form #AddFuelForm="ngForm" (ngSubmit)="onSubmit(AddFuelForm)" class="form-horizontal" role="form" novalidate >
@@ -22,18 +22,14 @@
           <div *ngIf=" (Surname.touched && IsEmptyParam(fuel.surname)) || !((Surname.valid) || (Surname.pristine))" class="alert alert-danger">
             Nazwisko jest wymagane
           </div>
-          
-          
-          
+   
           <div class="input-group">
             <label>Data Tankowania</label>
-            <input type="date" class="form-control" name="dateOfFuel" ngModel #DateOfFuel="ngModel"  required [(ngModel)]="fuel.dateOfFuel">
+            <input type="date" class="form-control" name="dateOfFuel" ngModel #DateOfFuel="ngModel"  required [(ngModel)]="dateofFuels">
           </div>
           <div *ngIf=" (DateOfFuel.touched && IsEmptyParam(fuel.dateOfFuel)) || !((DateOfFuel.valid) || (DateOfFuel.pristine))" class="alert alert-danger">
             Data tankowania jest wymagana
           </div>
-          
-          
 
           <div class="input-group">
             <label>Liczba litrów</label>

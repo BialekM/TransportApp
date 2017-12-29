@@ -113,8 +113,17 @@ export class CarService {
   });
   }
 
+  DeleteFuel( fuelId: number): Promise<Boolean>{
+    return this.http.post("http://localhost:54117/DeleteFuel", fuelId,
+    { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+    then(response => {
+    let y = response.json();
+    return y;
+  });
+  }
+
   AddFuel(fuel: Fuel): Promise<CarStatus>{
-    return this.http.post("http://localhost:54117/AddFuel", JSON.stringify({fuelId : fuel.fuelid, dateOfFuel: fuel.dateOfFuel,
+    return this.http.post("http://localhost:54117/AddFuel", JSON.stringify({fuelId : fuel.fuelId, dateOfFuel: fuel.dateOfFuel,
     carId: fuel.carId, numberOfLitres: fuel.numberOfLitres, price: fuel.price, userName: fuel.userName, surname: fuel.surname
     }), { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
     then(response => {
@@ -122,16 +131,4 @@ export class CarService {
     return y;
   });
   }
-
-
 }
-  // EditPersonalData(editData: EditData): Promise<EditData> {
-  //   return this.http.post(environment.baseUrl + 'account/editprofile', JSON.stringify({
-  //     FirstName: editData.FirstName, LastName: editData.LastName, ActualPassword: editData.ActualPassword,
-  //     NewPassword: editData.NewPasword, NewPasswordConfirm: editData.NewPasswordConfirm
-  //   })).toPromise().then((response: Response) => {
-  //     this.showMessage = true;
-  //     this.Message = "Profil Zaktualizowany";
-  //     return response.json() as PersonalData;
-  //   }).catch(this.handleError);
-  // }

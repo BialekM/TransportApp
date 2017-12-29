@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+   <tr>
+     <th>Opis Badania</th>
+     <th>Data badania</th>
+     <th>Data Końca badania</th>
+     <th><a [routerLink]="['/GetSurveys/'+ id +'/Survey/' + 0]"> Dodaj Badanie </a> </th>
+   </tr>
+ </thead>
+ <tbody class="tabelka" *ngFor="let survey of surveyList; let i = index">
+   <tr>
+   <th>{{survey.surveyDescription}}</th>
+   <th>{{survey.reviewWhen.toString().substr(0,10)}}</th>
+   <th>{{survey.reviewFrom.toString().substr(0,10)}}</th>
+   <th><a [routerLink]="['/GetSurveys/' + id + '/Survey/' + survey.surveyId]"> Edytuj Badanie </a> </th>
+   <th><button class="btn btn-danger" (click)=DeleteSurvey(i)>Usun Badanie</button></th>
+   </tr>
+   <td colspan="11">
+    <div *ngIf="DateAregood(i)"class="alert alert-danger text-center">
+      {{message}}
+    </div>
+    </td>
+ </tbody>
+ </table>

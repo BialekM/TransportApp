@@ -5,15 +5,17 @@
      <th>Nazwisko</th>
      <th>Typ</th>
      <th>Pesel</th>
+     <th><a [routerLink]="['/AddWorker/', 0]"> Dodaj Użytkownika </a> </th>
    </tr>
  </thead>
- <tbody *ngFor="let user of userList; let i = index">
+ <tbody class="tabelka" *ngFor="let user of userList; let i = index">
    <tr>
    <th>{{user.userName}}</th>
    <th>{{user.surname}}</th>
    <th>{{CheckUserType(user.userType)}}</th>
    <th>{{user.pesel}}</th>
    <th><a [routerLink]="['/AddWorker/', user.id]"> Edytuj Użytkownika </a> </th>
+   <th><a [routerLink]="['/GetSurveys/', user.id]"> Lista Badań </a> </th>
    <th><button class="btn btn-danger" (click)=DeleteUser(i)>Usun użytkownika</button></th>
    </tr>
  </tbody>

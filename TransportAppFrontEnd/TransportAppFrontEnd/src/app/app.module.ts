@@ -22,6 +22,8 @@ import { AuthenticationService } from './services/authenticationService';
 import { JwtHelper } from 'angular2-jwt';
 import {SuiModule} from 'ng2-semantic-ui';
 import { AuthGuard } from './auth.guard';
+import { SurveyComponent } from './Components/survey/survey.component';
+import { SurveyListComponent} from './Components/survey-list/survey-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { AuthGuard } from './auth.guard';
     FuelsListComponent,
     FuelComponent,
     LoginComponent,
+    SurveyComponent,
+    SurveyListComponent
   ],
   imports: [
     SuiModule,

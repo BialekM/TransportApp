@@ -17,6 +17,7 @@ export class FuelComponent implements OnInit {
   message = '';
   status = '';
   buttonClicked = false;
+  dateofFuels: string;
   constructor(private carService: CarService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -26,6 +27,9 @@ export class FuelComponent implements OnInit {
      if(this.carId!=0 && this.fuelId!=0){
          this.carService.GetCarFuel(this.carId,this.fuelId).then(r =>{
          this.fuel = r;
+         if(r.dateOfFuel != undefined || r.dateOfFuel != null){
+          this.dateofFuels = r.dateOfFuel.toString().substr(0,10);
+        }
          });
        }
   }
@@ -33,7 +37,7 @@ export class FuelComponent implements OnInit {
   onSubmit(form: NgForm): void {
     if (form.valid) {
       this.fuel = form.value;
-      this.fuel.fuelid = this.fuelId;
+      this.fuel.fuelId = this.fuelId;
       this.fuel.carId = this.carId;
       this.carService.AddFuel(this.fuel).then(Response => {
         this.message = Response.message;

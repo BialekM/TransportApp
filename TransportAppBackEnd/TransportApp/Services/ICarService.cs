@@ -16,5 +16,7 @@ namespace TransportApp.Services
         CarStatus AddFuel(int carId, Fuel fuel);
         CarStatus DeleteCar(Car car);
         Boolean DeleteFault(int faultId);
+        Fuel GetFuel(int carId, int fuelId);
+        bool DeleteFuel(int fuelId);
     }
 }

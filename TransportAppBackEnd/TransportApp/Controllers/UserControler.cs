@@ -42,5 +42,24 @@ namespace TransportApp.Controllers
             return _userService.DeleteUser(user);
         }
 
+        [Route("AddSurvey"), HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
+        public Task<UserStatus> AddSurvey([FromBody]Survey survey)
+        {
+            return _userService.AddSurvey(survey);
+        }
+
+        [Route("GetSurvey/{id}"), HttpGet]
+        public List<Survey> GetSurvey(string id)
+        {
+            return _userService.GetSurveys(id);
+        }
+
+        [Route("GetSurvey/{id}/User/{surveyId}"), HttpGet]
+        public Survey GetSurvey(string id, int surveyId)
+        {
+            return _userService.GetSurveys(id, surveyId);
+        }
+
     }
 }

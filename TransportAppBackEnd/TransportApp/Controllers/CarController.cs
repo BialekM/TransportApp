@@ -54,7 +54,7 @@ namespace TransportApp.Controllers
         {
             return _carService.AddFault(fault.CarId,fault);
         }
-//        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Manager")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Manager")]
         [Route("GetCars"), HttpGet]
         public List<Car> ListOfCars()
         {
@@ -89,6 +89,12 @@ namespace TransportApp.Controllers
             return _carService.GetFault(carId,faultId);
         }
 
+        [Route("GetCarFuel/{carId}/Fuel/{fuelId}"), HttpGet]
+        public Fuel GetFuel(int carId, int fuelId)
+        {
+            return _carService.GetFuel(carId, fuelId);
+        }
+
         [Route("GetCarFuelList/{carId}"), HttpGet]
         public List<Fuel> GetFuelList(int carId)
         {
@@ -100,6 +106,13 @@ namespace TransportApp.Controllers
         public CarStatus AddFuel([FromBody]Fuel fuel)
         {
             return _carService.AddFuel(fuel.CarId,fuel);
+        }
+
+        [Route("DeleteFuel"), HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
+        public Boolean DeleteFuel([FromBody] int fuelId)
+        {
+            return _carService.DeleteFuel(fuelId);
         }
     }
 }

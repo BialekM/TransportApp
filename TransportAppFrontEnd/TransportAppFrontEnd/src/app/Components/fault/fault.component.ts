@@ -17,7 +17,6 @@ export class FaultComponent implements OnInit {
   status = '';
   buttonClicked = false;
   constructor(private carService: CarService, private route: ActivatedRoute) { }
-  
 
   ngOnInit() {
    this.carId = +this.route.snapshot.params['id'];

@@ -1,0 +1,44 @@
+<div class="container">
+  <div id="loginBox" class="mainbox" >
+    <div class="panel-heading">
+    </div>
+  <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <form #AddFaultForm="ngForm" (ngSubmit)="onSubmit(AddFaultForm)" class="form-horizontal" role="form" novalidate >
+          <div class="text-center"><H2><label>Badanie</label></H2></div>
+          <label>Opis</label>
+          <div class="input-group">
+            <textarea class="form-control" rows="3" placeholder="Dodaj opis Badania" name="surveyDescription" ngModel #surveyDescription="ngModel" required ref-textarea 
+            [(ngModel)]="survey.surveyDescription">{{survey.surveyDescription}}</textarea>
+            <div *ngIf=" (surveyDescription.touched && IsEmptyParam(survey.surveyDescription)) || !((surveyDescription.valid) || (surveyDescription.pristine))" class="alert alert-danger">
+             Opis jest wymagany
+            </div>
+          </div>
+        
+          <label>Data badania</label>
+          <input type="date" class="form-control" name="reviewWhen" ngModel #reviewWhen="ngModel" required [(ngModel)]="reviewWhenn">
+          <div *ngIf=" (reviewWhen.touched && IsEmptyParam(survey.reviewWhen)) || !((reviewWhen.valid) || (reviewWhen.pristine))" class="alert alert-danger">
+            Data badania jest wymagana
+          </div>
+          
+          <label>Data końca ważności badania</label>
+          <input type="date" class="form-control" name="reviewFrom" ngModel #reviewFrom="ngModel" required [(ngModel)]="reviewFromm">
+          <div *ngIf=" (reviewFrom.touched && IsEmptyParam(survey.reviewFrom)) || !((reviewFrom.valid) || (reviewFrom.pristine))" class="alert alert-danger">
+            Data końca ważności badania jest wymagana
+          </div>
+
+        <div class="form-group">
+          <button valid type="submit" class="btn btn-primary center-block" (click)="ButtonClicked()">  <b> Zatwierdź i wyślij</b> </button>
+        </div>
+        <div *ngIf="AddFaultForm.invalid && buttonClicked" class="alert alert-danger">
+          Nie wypełniono wszystkich pól
+        </div>
+        <div *ngIf="status=='Failed'" class="alert alert-danger">
+          {{this.message}}
+        </div>
+        <div *ngIf="status=='ok'" class="alert alert-success">
+            {{this.message}}
+        </div>  
+    </form>     
+  </div>                     
+  </div>  
+</div>

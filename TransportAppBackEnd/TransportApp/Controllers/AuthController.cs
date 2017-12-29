@@ -52,10 +52,20 @@ namespace TransportApp.Controllers
                         PasswordVerificationResult.Success)
                     {
                         var claims = new List<Claim>();
-                        claims.Add(new Claim("roles", "Admin"));
-                        claims.Add(new Claim("roles", "Manager"));
+                        if (user.UserType == UserType.Boss)
+                        {
+                            claims.Add(new Claim("roles", "Administrator"));
+                        }
+                        if(user.UserType == UserType.Mechanic)
+                        {
+                            claims.Add(new Claim("roles", "Mechanic"));
+                        }
+                        if (user.UserType == UserType.Worker)
+                        {
+                            claims.Add(new Claim("roles", "Worker"));
+                        }
                         claims.Add(new Claim("UserName",user.UserName));
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEJAKISDLUGIKLUCZNIEWIEMPOCO"));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEZASZYFROWANYKLUCZ"));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
                             "http://localhost:54117",

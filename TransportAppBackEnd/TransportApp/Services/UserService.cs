@@ -107,16 +107,66 @@ namespace TransportApp.Services
             }
         }
 
-    public List<User> GetUsers()
+        public List<User> GetUsers()
         {
             List<User> ListOfUsers = _context.Users.ToList();
             return ListOfUsers;
+        }
+
+        public List<Survey> GetSurveys()
+        {
+            List<Survey> ListOfSurveys = _context.Surveys.ToList();
+            return ListOfSurveys;
+        }
+
+        public List<Survey> GetSurveys(string id)
+        {
+            List<Survey> lista = new List<Survey>();
+            lista = _context.Surveys.Where(e => e.UserId.Equals(id)).ToList();
+            return lista;
+        }
+
+        public Survey GetSurveys(string id,int surveyId)
+        {
+            Survey survey = new Survey();
+            survey = _context.Surveys.Where(e => e.UserId.Equals(id) && e.SurveyId == surveyId).FirstOrDefault();
+            return survey;
         }
 
         public User GetUser(string id)
         {
             User user = _context.Users.FirstOrDefault(u => u.Id == id);
             return user;
+        }
+
+        public async Task<UserStatus> AddSurvey(Survey survey)
+        {
+            UserStatus status = new UserStatus();
+            var user = await _userMgr.FindByIdAsync(survey.UserId);
+            if (user != null)
+            {
+                if (survey.SurveyId == 0)
+                {
+                    _context.Surveys.Add(survey);
+                    _context.SaveChanges();
+                    status.Message = "Pomyślnie dodano badanie";
+                    status.Status = "ok";
+                }
+                else
+                {
+                    Survey newsurvey = new Survey();
+                    _context.Surveys.Update(survey);
+                    _context.SaveChanges();
+                    status.Message = "Pomyślnie zaktualizowano badanie";
+                    status.Status = "ok";
+                }
+            }
+            else
+            {
+                status.Message = "Nie dodano badania";
+                status.Status = "Failed";
+            }
+            return status;
         }
 
     }

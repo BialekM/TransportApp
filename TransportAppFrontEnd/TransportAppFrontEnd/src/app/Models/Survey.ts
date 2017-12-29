@@ -1,6 +1,7 @@
 export class Survey{
     surveyId: number;
-    surveyDescription : string;
-    ReviewWhen: Date;
-    ReviewFrom: Date;
+    userId: string;
+    surveyDescription: string;
+    reviewWhen: Date;
+    reviewFrom: Date;
 }

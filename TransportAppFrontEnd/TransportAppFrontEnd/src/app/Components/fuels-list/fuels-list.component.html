@@ -3,20 +3,25 @@
    <tr>
      <th>Id</th>
      <th>Data Tankowania</th>
-     <th>Użytkownik</th>
+     <th>id użytkownika</th>
+     <th>Imie</th>
+     <th>Nazwisko</th>
      <th>Liczba litrów</th>
      <th>Cena</th>
      <th><a [routerLink]="['Fuel/',0]"> Dodaj Tankowanie </a> </th>
    </tr>
  </thead>
- <tbody *ngFor="let fault of faultList; let i = index">
+ <tbody *ngFor="let fuel of fuelList; let i = index">
    <tr>
    <th>{{fuel.fuelId}}</th>
-   <th>{{fuel.dateOfFuel}}</th>
+   <th>{{fuel.dateOfFuel.toString().substr(0,10)}}</th>
    <th>{{fuel.userId}}</th>
+   <th>{{fuel.userName}}</th>
+   <th>{{fuel.surname}}</th>
    <th>{{fuel.numberOfLitres}}</th>
    <th>{{fuel.price}}</th>
-   <th><a [routerLink]="['Fuel/', fuel.fuelId]"> Edytuj Naprawę </a> </th>
+   <th><a [routerLink]="['Fuel/', fuel.fuelId]"> Edytuj Tankowanie </a> </th>
+   <th><button (click)=DeleteFuel(i)>Usun tankowanie</button></th>
    </tr>
  </tbody>
  </table>

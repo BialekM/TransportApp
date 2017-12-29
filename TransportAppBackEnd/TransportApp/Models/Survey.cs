@@ -10,6 +10,7 @@ namespace TransportApp.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SurveyId { get; set; }
+        public string UserId { get; set; }
         public string SurveyDescription { get; set; }
         public DateTime ReviewWhen { get; set; }
         public DateTime ReviewFrom { get; set; }

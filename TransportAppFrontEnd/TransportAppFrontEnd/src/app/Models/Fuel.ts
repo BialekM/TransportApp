@@ -1,5 +1,5 @@
 export class Fuel{
-    fuelid: number;
+    fuelId: number;
     carId: number;
     dateOfFuel: Date;
     userId: Number;

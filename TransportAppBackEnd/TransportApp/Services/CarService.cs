@@ -151,6 +151,12 @@ namespace TransportApp.Services
             return fault;
         }
 
+        public Fuel GetFuel(int carId, int fuelId)
+        {
+            Fuel fuel = _context.Fuels.FirstOrDefault(e => e.FuelId == fuelId);
+            return fuel;
+        }
+
         public CarStatus AddFault(int carId, Fault fault)
         {
             CarStatus carStatus = new CarStatus();
@@ -186,14 +192,14 @@ namespace TransportApp.Services
                     _context.Fuels.Count(c => c.FuelId.Equals(fuel.FuelId)) > 0)
                 {
                     _context.Fuels.Update(fuel);
-                    _context.SaveChangesAsync();
+                    _context.SaveChanges();
                     carStatus.Message = "Tankowanie zaktualizowane pomyślnie";
                     carStatus.Status = "ok";
                 }
                 else if (_context.Cars.Count(c => c.Id.Equals(carId)) > 0)
                 {
                     _context.Fuels.Add(fuel);
-                    _context.SaveChangesAsync();
+                    _context.SaveChanges();
                     carStatus.Message = "Tankowanie dodano pomyślnie";
                     carStatus.Status = "ok";
 
@@ -212,6 +218,29 @@ namespace TransportApp.Services
                 return carStatus;
             }
             return carStatus;
+        }
+
+        public bool DeleteFuel(int fuelId)
+        {
+            try
+            {
+                var fuelFromDb = _context.Fuels.Single(f => f.FuelId == fuelId);
+
+                if (fuelFromDb != null)
+                {
+                    _context.Fuels.Remove(fuelFromDb);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

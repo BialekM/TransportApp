@@ -11,5 +11,9 @@ namespace TransportApp.Services
         List<User> GetUsers();
         User GetUser(string id);
         Task<Boolean> DeleteUser(User model);
+        Task<UserStatus> AddSurvey(Survey survey);
+        List<Survey> GetSurveys(string id);
+        List<Survey> GetSurveys();
+        Survey GetSurveys(string id, int surveyId);
     }
 }

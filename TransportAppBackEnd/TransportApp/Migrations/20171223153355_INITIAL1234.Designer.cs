@@ -12,9 +12,10 @@ using TransportApp.Models;
 namespace TransportApp.Migrations
 {
     [DbContext(typeof(TransportAppContext))]
-    partial class TransportAppContextModelSnapshot : ModelSnapshot
+    [Migration("20171223153355_INITIAL1234")]
+    partial class INITIAL1234
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
