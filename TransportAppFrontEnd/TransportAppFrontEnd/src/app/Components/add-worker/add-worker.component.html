@@ -6,14 +6,14 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4">
       <form #AddUserForm="ngForm" (ngSubmit)="onSubmit(AddUserForm)" class="form-horizontal" role="form" novalidate>
         <H2>
-          <label>Uzytkownik</label>
+          <label>Użytkownik</label>
         </H2>
         <label>Imie</label>
         <div class="input-group">
-          <input type="text" class="form-control" required name="userName" ngModel #UserName="ngModel" placeholder="Imie" 
-          [(ngModel)]="user.userName">
+          <input type="text" class="form-control" required name="firstName" ngModel #FirstName="ngModel" placeholder="Imie" 
+          [(ngModel)]="user.firstName">
         </div>
-        <div *ngIf=" (UserName.touched && IsEmptyParam(user.userName)) || !((UserName.valid) || (UserName.pristine))" class="alert alert-danger">
+        <div *ngIf=" (FirstName.touched && IsEmptyParam(user.firstName)) || !((FirstName.valid) || (FirstName.pristine))" class="alert alert-danger">
           Imie jest wymagane
         </div>
 
@@ -36,9 +36,10 @@
 
         <label>Login</label>
         <div class="input-group">
-          <input type="text" class="form-control" name="login" placeholder="login" required ngModel #Login="ngModel" [(ngModel)]="user.login">
+          <input type="text" class="form-control" required name="userName" ngModel #UserName="ngModel" placeholder="Login" 
+          [(ngModel)]="user.userName">
         </div>
-        <div *ngIf=" (Login.touched && IsEmptyParam(user.login)) || !((Login.valid) || (Login.pristine))" class="alert alert-danger">
+        <div *ngIf=" (UserName.touched && IsEmptyParam(user.userName)) || !((UserName.valid) || (UserName.pristine))" class="alert alert-danger">
           Login jest wymagany
         </div>
         <div *ngIf="IdZero()">
@@ -69,7 +70,7 @@
           <option value="Mechanic">Mechanik</option>
           <option value="Worker">Pracownik</option>
         </select>
-        <div *ngIf=" (UserType.touched && IsEmptyParam(user.userType)) || !((UserType.valid) || (UserType.pristine))" class="alert alert-danger">
+        <div *ngIf=" (UserType.touched && IsEmptyParam(userType)) || !((UserType.valid) || (UserType.pristine))" class="alert alert-danger">
           Typ użytkownika jest wymagany
         </div>
         <div class="form-group">

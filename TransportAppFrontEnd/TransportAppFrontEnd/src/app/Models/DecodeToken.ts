@@ -3,5 +3,5 @@ export class DecodeToken{
     aud: string;
     exp: string;
     iss: string;
-    roles: string[];
+    roles: string;
 }

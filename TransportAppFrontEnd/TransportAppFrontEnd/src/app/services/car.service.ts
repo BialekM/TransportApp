@@ -54,7 +54,9 @@ export class CarService {
   });
   }
   GetCars(): Promise<Car[]> {
-    return this.http.get('http://localhost:54117/GetCars').toPromise().then((response: Response) => {
+    const headers =  new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('currentUser')});
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get('http://localhost:54117/GetCars',options).toPromise().then((response: Response) => {
     this.carList = response.json();
     return response.json() as Car[];
     });

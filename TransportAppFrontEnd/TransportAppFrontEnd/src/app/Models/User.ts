@@ -8,7 +8,7 @@ export class User{
     pesel: number;
     userName : string;
     userType: UserType;
-    login: string;
+    firstName: string;
     password : string;
     surname: string;
     listOfSurvey: Survey[];

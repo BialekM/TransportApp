@@ -1,23 +1,25 @@
-<table class="table">
-  <thead>
-   <tr>
-     <th>Id</th>
-     <th>Informacje</th>
-     <th>Priorytet</th>
-     <th>Zatwierdzone przez Mechanika</th>
-     <th>Zatwierdzone przez Administratora</th>
-     <th><a [routerLink]="['Fault/',0]"> Dodaj Naprawę </a> </th>
-   </tr>
- </thead>
- <tbody *ngFor="let fault of faultList; let i = index">
-   <tr>
-   <th>{{fault.faultId}}</th>
-   <th>{{fault.faultInformation}}</th>
-   <th>{{fault.priority}}</th>
-   <th>{{fault.confirmDone}}</th>
-   <th>{{fault.mechanicDone}}</th>
-   <th><a [routerLink]="['Fault/', fault.faultId]"> Edytuj Naprawę </a> </th>
-   <th><button (click)=DeleteFault(i)>Usun naprawę</button></th>
-   </tr>
- </tbody>
- </table>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Informacje</th>
+      <th>Priorytet</th>
+      <th>Zatwierdzone przez Mechanika</th>
+      <th>Zatwierdzone przez Administratora</th>
+      <th><a [routerLink]="['Fault/',0]" class="btn btn-primary btn-xs"> Dodaj Naprawę </a> </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let fault of faultList; let i = index">
+    <tr>
+    <th>{{fault.faultId}}</th>
+    <th>{{fault.faultInformation}}</th>
+    <th>{{PriorityStatus(fault.priority)}}</th>
+    <th>{{ ChangeToTextConfirm(fault.confirmDone)}}</th>
+    <th>{{  ChangeToTextConfirm(fault.mechanicDone)}}</th>
+    <th><a [routerLink]="['Fault/', fault.faultId]" class="btn btn-primary btn-xs"> Edytuj Naprawę </a> </th>
+    <th><button (click)=DeleteFault(i) class="btn btn-danger btn-xs">Usun naprawę</button></th>
+    </tr>
+  </tbody>
+  </table>
+</div>

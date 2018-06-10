@@ -21,7 +21,7 @@ namespace TransportApp.Models
         public DateTime OcEndDate { get; set; }
         public string Insurer { get; set; }
         public DateTime? UdtElevatorReviewWhen { get; set; }
-        public DateTime? UdtElewatorReviewFrom { get; set; }
+        public DateTime? UdtElevatorReviewFrom { get; set; }
         public DateTime? TachografReviewWhen { get; set; }
         public DateTime? TachografReviewFrom { get; set; }
         public string Owner { get; set; }

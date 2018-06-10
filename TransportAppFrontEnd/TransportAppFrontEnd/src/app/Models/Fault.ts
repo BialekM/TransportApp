@@ -1,5 +1,5 @@
 enum Priority {
-    Hihgt,Medium,Hard
+    low,Medium,Hard
 }
 
 export class Fault{

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TransportApp.Models;
@@ -61,5 +64,32 @@ namespace TransportApp.Controllers
             return _userService.GetSurveys(id, surveyId);
         }
 
+
+        [EnableCors("AllowSpecificOrigin")]
+        [Route("ChangePassword"), HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Administrator, Mechanic")]
+        public Task<UserStatus> ChangePassword([FromBody] PasswordChange pasChangeModel)
+        {
+            var cos = User.Identity.Name;
+            var name = User.Claims.ToArray();
+            var value = name[1].Value;
+            UserStatus userStatus = new UserStatus();
+            userStatus.Pesel = 1;
+            userStatus.Message = "asda";
+            userStatus.Status = "ok";
+            return null;
+        }
+
+        public class PasswordChange
+        {
+            public string ActualPassword { get; set; }
+        }
+
+        [Route("DeleteSurvey"), HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
+        public Boolean DeleteSurvey([FromBody] DeleteSurvey survey)
+        {
+            return _userService.DeleteSurvey(survey.id);
+        }
     }
 }

@@ -50,8 +50,7 @@ namespace TransportApp
                 })
                 .AddEntityFrameworkStores<TransportAppContext>()
                 .AddDefaultTokenProviders();
-//            services.AddAuthentication()
-//                .AddCookie(cfg => cfg.SlidingExpiration = true);
+
             services.AddAuthentication()
                 .AddJwtBearer(cfg =>
                 {
@@ -62,11 +61,10 @@ namespace TransportApp
                     {
                         ValidIssuer = "http://localhost:54117",
                         ValidAudience = "http://localhost:54117",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEJAKISDLUGIKLUCZNIEWIEMPOCO"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TUBEDZIEZASZYFROWANYKLUCZ"))
                     };
 
                 });
-            //            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TransportAppContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

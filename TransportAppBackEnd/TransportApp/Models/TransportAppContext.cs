@@ -15,9 +15,6 @@ namespace TransportApp.Models
                 .HasIndex(u => u.VinNumber)
                 .IsUnique();
             builder.Entity<User>()
-                .HasIndex(u => u.Login)
-                .IsUnique();
-            builder.Entity<User>()
                 .HasIndex(u => u.Pesel)
                 .IsUnique();
            

@@ -54,11 +54,11 @@ namespace TransportApp.Controllers
         {
             return _carService.AddFault(fault.CarId,fault);
         }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Manager")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Administrator, Mechanic")]
         [Route("GetCars"), HttpGet]
         public List<Car> ListOfCars()
         {
-//            var user = User.Identity;
+//            var cos = User.Identity;
 //            var name = User.Claims.ToArray();
 //            var value = name[1].Value;
             return _carService.GetCars();

@@ -12,8 +12,8 @@ using TransportApp.Models;
 namespace TransportApp.Migrations
 {
     [DbContext(typeof(TransportAppContext))]
-    [Migration("20171122231155_initial213123414")]
-    partial class initial213123414
+    [Migration("20180225135717_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -213,9 +213,9 @@ namespace TransportApp.Migrations
 
                     b.Property<string>("TypeOfCar");
 
-                    b.Property<DateTime?>("UdtElevatorReviewWhen");
+                    b.Property<DateTime?>("UdtElevatorReviewFrom");
 
-                    b.Property<DateTime?>("UdtElewatorReviewFrom");
+                    b.Property<DateTime?>("UdtElevatorReviewWhen");
 
                     b.Property<string>("VinNumber");
 
@@ -267,7 +267,11 @@ namespace TransportApp.Migrations
 
                     b.Property<double>("Price");
 
+                    b.Property<string>("Surname");
+
                     b.Property<int>("UserId");
+
+                    b.Property<string>("UserName");
 
                     b.HasKey("FuelId");
 
@@ -298,7 +302,7 @@ namespace TransportApp.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Login");
+                    b.Property<string>("FirstName");
 
                     b.Property<string>("Password");
 
@@ -307,10 +311,6 @@ namespace TransportApp.Migrations
                     b.Property<string>("Surname");
 
                     b.Property<int>("UserType");
-
-                    b.HasIndex("Login")
-                        .IsUnique()
-                        .HasFilter("[Login] IS NOT NULL");
 
                     b.HasIndex("Pesel")
                         .IsUnique()

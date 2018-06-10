@@ -16,6 +16,7 @@ export class FaultComponent implements OnInit {
   message = '';
   status = '';
   buttonClicked = false;
+  priority_: string;
   constructor(private carService: CarService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -25,8 +26,19 @@ export class FaultComponent implements OnInit {
     if(this.carId!=0 && this.faultId!=0){
         this.carService.GetCarFault(this.carId,this.faultId).then(r =>{
         this.fault = r;
+        console.log(this.fault);
+        if(r.priority.toString()=="0"){
+          this.priority_ = "Hight";  
+        }
+        if(r.priority.toString()=="1"){
+          this.priority_ = "Medium";
+        }
+        if(r.priority.toString()=="2"){
+          this.priority_ = "Low";
+        }
         });
       }
+    
   }
   onSubmit(form: NgForm): void {
     if (form.valid) {
@@ -53,7 +65,6 @@ export class FaultComponent implements OnInit {
     if(parametr===undefined){
       return true;
     }else{
-      console.log(this.fault.faultInformation);
       return false;
     }
   }

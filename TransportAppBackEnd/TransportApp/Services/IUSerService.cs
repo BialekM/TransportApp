@@ -15,5 +15,6 @@ namespace TransportApp.Services
         List<Survey> GetSurveys(string id);
         List<Survey> GetSurveys();
         Survey GetSurveys(string id, int surveyId);
+        Boolean DeleteSurvey(int surveyId);
     }
 }

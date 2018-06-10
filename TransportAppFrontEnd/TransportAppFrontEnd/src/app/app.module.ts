@@ -24,6 +24,11 @@ import {SuiModule} from 'ng2-semantic-ui';
 import { AuthGuard } from './auth.guard';
 import { SurveyComponent } from './Components/survey/survey.component';
 import { SurveyListComponent} from './Components/survey-list/survey-list.component';
+import { MechanicMenuPanelComponent } from './Components/mechanic-menu-panel/mechanic-menu-panel.component';
+import { MechanicCarPanelComponent } from './Components/mechanic-car-panel/mechanic-car-panel.component';
+import { MechanicFaultsListComponent } from './Components/mechanic-faults-list/mechanic-faults-list.component';
+import { MechanicAddFaultComponent } from './Components/mechanic-add-fault/mechanic-add-fault.component';
+import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { SurveyListComponent} from './Components/survey-list/survey-list.compone
     FuelComponent,
     LoginComponent,
     SurveyComponent,
-    SurveyListComponent
+    SurveyListComponent,
+    MechanicMenuPanelComponent,
+    MechanicCarPanelComponent,
+    MechanicFaultsListComponent,
+    MechanicAddFaultComponent,
+    ChangePasswordComponent
   ],
   imports: [
     SuiModule,

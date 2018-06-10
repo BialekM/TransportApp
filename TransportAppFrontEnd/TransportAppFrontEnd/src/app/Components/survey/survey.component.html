@@ -16,13 +16,13 @@
         
           <label>Data badania</label>
           <input type="date" class="form-control" name="reviewWhen" ngModel #reviewWhen="ngModel" required [(ngModel)]="reviewWhenn">
-          <div *ngIf=" (reviewWhen.touched && IsEmptyParam(survey.reviewWhen)) || !((reviewWhen.valid) || (reviewWhen.pristine))" class="alert alert-danger">
+          <div *ngIf=" (reviewWhen.touched && IsEmptyParam(reviewWhen)) || !((reviewWhen.valid) || (reviewWhen.pristine))" class="alert alert-danger">
             Data badania jest wymagana
           </div>
           
           <label>Data końca ważności badania</label>
           <input type="date" class="form-control" name="reviewFrom" ngModel #reviewFrom="ngModel" required [(ngModel)]="reviewFromm">
-          <div *ngIf=" (reviewFrom.touched && IsEmptyParam(survey.reviewFrom)) || !((reviewFrom.valid) || (reviewFrom.pristine))" class="alert alert-danger">
+          <div *ngIf=" (reviewFrom.touched && IsEmptyParam(reviewFrom)) || !((reviewFrom.valid) || (reviewFrom.pristine))" class="alert alert-danger">
             Data końca ważności badania jest wymagana
           </div>
 

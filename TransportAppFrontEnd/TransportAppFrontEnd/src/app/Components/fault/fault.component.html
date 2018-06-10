@@ -1,8 +1,5 @@
 <div class="container">
   <div id="loginBox" class="mainbox" >
-    <div class="panel-heading">
-      <div class="panel-title text-center">Dodawanie Naprawy</div>
-    </div>
   <div class="col-sm-6 col-md-4 col-md-offset-4">
       <form #AddFaultForm="ngForm" (ngSubmit)="onSubmit(AddFaultForm)" class="form-horizontal" role="form" novalidate >
           <div class="text-center"><H2><label>Naprawa</label></H2></div>
@@ -16,12 +13,12 @@
           </div>
         
           <label>Priorytet</label>
-          <select class="form-control" name="priority" ngModel #priority="ngModel" required [(ngModel)]="fault.priority">
+          <select class="form-control" name="priority" ngModel #priority="ngModel" required [(ngModel)]="priority_">
             <option value="Hight">Wysoki</option>
             <option value="Medium">Średni</option>
             <option value="Low">Niski</option>
           </select>
-          <div *ngIf=" (priority.touched && IsEmptyParam(fault.priority)) || !((priority.valid) || (priority.pristine))" class="alert alert-danger">
+          <div *ngIf=" (priority.touched && IsEmptyParam(priority_)) || !((priority.valid) || (priority.pristine))" class="alert alert-danger">
             Priorytet jest wymagany
           </div>
           

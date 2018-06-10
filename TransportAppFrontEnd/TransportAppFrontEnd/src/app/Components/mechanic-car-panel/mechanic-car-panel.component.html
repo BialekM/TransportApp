@@ -1,0 +1,34 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Numer Rejestracyjny</th>
+        <th>Typ</th>
+        <th>Model</th>
+        <th>Rok Produkcji</th>
+        <th>Moc</th>
+        <th>Data przeglądu</th>
+        <th>Koniec Oc</th>
+      </tr>
+    </thead>
+    <tbody class="tabelka" *ngFor="let car of carList; let i = index">
+      <tr>
+        <th>{{car.registrationNumber}}</th>
+        <th>{{car.typeOfCar}}</th>
+        <th>{{car.model}}</th>
+        <th>{{car.yearOfProduction}}</th>
+        <th>{{car.power}} kw</th>
+        <th>{{car.carReviewDate | date: 'dd/MM/yyyy'}}</th>
+        <th>{{car.ocEndDate | date: 'dd/MM/yyyy' }}</th>
+        <th>
+          <a [routerLink]="['/GetMechanicfaultsList', car.id]" class="btn btn-primary btn-xs" role="button"> Naprawy </a>
+        </th>
+      </tr>
+      <td colspan="11">
+      <div *ngIf="DateAregood(i)"class="alert alert-danger text-center">
+        {{message}}
+      </div>
+      </td>
+    </tbody>
+  </table>
+</div>

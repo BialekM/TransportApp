@@ -1,8 +1,5 @@
 <div class="container">
     <div id="loginBox" class="mainbox" >
-      <div class="panel-heading">
-        <div class="panel-title">Dodawanie Samochodu</div>
-      </div>
     <div class="col-sm-6 col-md-4 col-md-offset-4">
         <form #AddCarForm="ngForm" (ngSubmit)="onSubmit(AddCarForm)" class="form-horizontal" role="form" novalidate >
             <H2><label>Samochód</label></H2>
@@ -66,7 +63,7 @@
   
           <div class="input-group">
             <label class="labeli">Moc samochodu</label>
-            <input id="power" type="text" class="form-control" name="power" pattern="[0-9%]+[0-9%]" placeholder="Moc Samochodu" required ngModel #power="ngModel" [(ngModel)]="car.power">
+            <input id="power" type="number" class="form-control" name="power" placeholder="Moc Samochodu" required ngModel #power="ngModel" [(ngModel)]="car.power">
             <div *ngIf=" (power.touched && IsEmpty(ocEndDate)) || !((power.valid) || (power.pristine))" class="alert alert-danger">
               Moc jest wymagana
             </div>
@@ -82,7 +79,7 @@
   
           <div class="input-group">
             <label class="labeli">Rok Produkcji</label>
-            <input id="yearOfProduction" type="number" class="form-control" name="yearOfProduction" pattern="[0-9%]+[0-9%]" placeholder="Rocznik Samochodu" required ngModel 
+            <input id="yearOfProduction" type="number" class="form-control" name="yearOfProduction" pattern="[0-9]+[0-9]+[0-9]+[0-9]" placeholder="Rocznik Samochodu" required ngModel 
             #yearOfProduction="ngModel" [(ngModel)]="car.yearOfProduction">
             <div *ngIf=" (yearOfProduction.touched && IsEmpty(yearOfProduction)) || !((yearOfProduction.valid) || (yearOfProduction.pristine))" class="alert alert-danger">
               Rok produkcji jest wymagany

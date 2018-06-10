@@ -1,0 +1,22 @@
+<div class="container">
+      <table class="table">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Informacje</th>
+            <th>Priorytet</th>
+            <th>Zatwierdzone</th>
+            <th><a [routerLink]="['Fault/',0]" class="btn btn-primary btn-xs" role="button"> Dodaj Naprawę </a> </th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let fault of faultList; let i = index" class="tabelka">
+          <tr>
+            <th>{{fault.faultId}}</th>
+            <th>{{fault.faultInformation}}</th>
+            <th>{{fault.priority}}</th>
+            <th>{{ConfrimByMechanic(fault.mechanicDone)}}</th>
+            <th><button (click)="EditFault(fault)" class="btn btn-primary btn-xs" role="button">Zatwierdz</button> </th>
+          </tr>
+        </tbody>
+      </table>
+</div>

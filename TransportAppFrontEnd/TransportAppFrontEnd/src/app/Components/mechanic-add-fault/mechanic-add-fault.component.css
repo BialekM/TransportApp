@@ -1,0 +1,7 @@
+input[type=checkbox] { width: 20px }
+.col-sm-6{
+    background-color: white;
+}
+.form-control{
+    width: 300px;
+}

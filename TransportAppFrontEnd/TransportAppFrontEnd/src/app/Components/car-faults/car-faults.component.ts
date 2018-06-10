@@ -27,4 +27,24 @@ export class CarFaultsComponent implements OnInit {
     });
   }
 
+    PriorityStatus(priority: number){
+      if(priority.toString()=="2"){
+      return "Niski";
+      }
+      if(priority.toString()=="1"){
+        return "Średni";
+      }
+      if(priority.toString()=="0"){
+        return "Wysoki";
+      }
+  }
+  ChangeToTextConfirm(confirmValue: boolean){
+    if(confirmValue == true){
+      return "tak";
+    }
+    if(confirmValue == false){
+      return "Nie";
+    }
+  }
+
 }

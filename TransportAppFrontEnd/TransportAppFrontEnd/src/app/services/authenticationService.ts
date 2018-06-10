@@ -7,13 +7,12 @@ import { Token } from '../Models/token';
 import { UserLoginData } from '../Models/UserLoginData';
 import { JwtHelper } from 'angular2-jwt';
 import { DecodeToken } from '../Models/DecodeToken';
-
+import {Router, CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
 @Injectable()
 export class AuthenticationService{
     public static token : Token;
     private decodeTeoken : DecodeToken;
-    constructor(private http:Http,private jwtHelper: JwtHelper){
-
+    constructor(private _router: Router,private http:Http,private jwtHelper: JwtHelper,){
     }
 
     login(userLoginData: UserLoginData): Observable<Token>{
@@ -22,11 +21,11 @@ export class AuthenticationService{
             ).map((response:Response) => {
                 AuthenticationService.token = response.json();
                 if(AuthenticationService.token.operationStatus=="ok"){
-                    localStorage.setItem('currentUser',AuthenticationService.token.accestoken);
+                    localStorage.setItem('currentUser', AuthenticationService.token.accestoken);
+                    setInterval(function(){
+                        localStorage.clear();
+                    }, 1000*10*60);
                 }
-                //  console.log(this.jwtHelper.decodeToken(localStorage.getItem('currentUser')))
-                // this.decodeTeoken = this.jwtHelper.decodeToken(localStorage.getItem('currentUser'));
-                // console.log(this.decodeTeoken.roles[1]);
                 return response.json();  
         });
     }
@@ -42,5 +41,6 @@ export class AuthenticationService{
 
     logout():void{
         localStorage.removeItem('currentUser');
+        this._router.navigate(['/Login']);
     }
 }

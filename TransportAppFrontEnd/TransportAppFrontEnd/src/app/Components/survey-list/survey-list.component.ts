@@ -32,7 +32,14 @@ export class SurveyListComponent implements OnInit {
       return false;
     }
   }
-  DeleteSurvey(i){  
+ 
+  DeleteSurvey(i: number)
+  {
+    console.log(this.surveyList[i].surveyId);
+    this.workerService.DeleteSurvey(this.surveyList[i].surveyId).then(r => {
+      if(r === true){
+        this.surveyList.splice(i, 1);
+      }  
+    })
   }
-
 }

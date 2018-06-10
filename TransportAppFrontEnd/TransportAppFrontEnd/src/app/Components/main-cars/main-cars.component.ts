@@ -44,5 +44,5 @@ export class MainCarsComponent implements OnInit {
         this.carList.splice(i, 1);
       }
     });
-}
+  }
 }

@@ -71,7 +71,7 @@ namespace TransportApp.Services
                     if (_context.Cars.Count(c => c.RegistrationNumber.Equals(car.RegistrationNumber)) > 0)
                     {
                         _context.Cars.Update(car);
-                        _context.SaveChangesAsync();
+                        _context.SaveChanges();
                         carStatus.Message = "Samochód pomyślnie zaktualizowany";
                         carStatus.Status = "ok";
                     }

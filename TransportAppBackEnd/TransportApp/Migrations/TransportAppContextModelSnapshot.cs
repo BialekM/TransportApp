@@ -212,9 +212,9 @@ namespace TransportApp.Migrations
 
                     b.Property<string>("TypeOfCar");
 
-                    b.Property<DateTime?>("UdtElevatorReviewWhen");
+                    b.Property<DateTime?>("UdtElevatorReviewFrom");
 
-                    b.Property<DateTime?>("UdtElewatorReviewFrom");
+                    b.Property<DateTime?>("UdtElevatorReviewWhen");
 
                     b.Property<string>("VinNumber");
 
@@ -301,7 +301,7 @@ namespace TransportApp.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Login");
+                    b.Property<string>("FirstName");
 
                     b.Property<string>("Password");
 
@@ -310,10 +310,6 @@ namespace TransportApp.Migrations
                     b.Property<string>("Surname");
 
                     b.Property<int>("UserType");
-
-                    b.HasIndex("Login")
-                        .IsUnique()
-                        .HasFilter("[Login] IS NOT NULL");
 
                     b.HasIndex("Pesel")
                         .IsUnique()

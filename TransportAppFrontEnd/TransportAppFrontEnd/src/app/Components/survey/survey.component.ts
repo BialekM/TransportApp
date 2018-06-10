@@ -15,22 +15,26 @@ export class SurveyComponent implements OnInit {
   id: string;
   surveyid: number;
   user: User;
+  surveyDescription = '';
   message = '';
   status = '';
   reviewWhenn = '';
   reviewFromm = '';
   buttonClicked = false;
   constructor(private workerService: WorkerService, private route: ActivatedRoute) {
-    this.id = (this.route.snapshot.params['id']).toString();
-    this.surveyid = +this.route.snapshot.params['surveyid'];
    }
   ngOnInit() {
+    this.id = (this.route.snapshot.params['id']).toString();
+    this.surveyid = +this.route.snapshot.params['surveyid'];
     this.survey = new Survey();
+    if(this.surveyid!=0){
     this.workerService.GetSurvey(this.id,this.surveyid).then(r=>{
       this.survey = r;
       this.reviewWhenn = r.reviewWhen.toString().substr(0,10);
       this.reviewFromm = r.reviewFrom.toString().substr(0,10);
     })
+  }
+  this.surveyDescription="";
   }
 
   IsEmptyParam(parametr: string){

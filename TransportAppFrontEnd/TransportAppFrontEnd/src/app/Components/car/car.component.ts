@@ -49,6 +49,8 @@ export class CarComponent implements OnInit {
         if(r.udtElevatorReviewWhen!= undefined || r.udtElevatorReviewWhen != null){
           this.carUdtElevatorReviewWhen = r.udtElevatorReviewWhen.toString().substr(0,10);
         }
+        console.log(this.carTachografReviewFrom);
+        console.log(this.carUdtElevatorReviewWhen);
       });
     }
   }

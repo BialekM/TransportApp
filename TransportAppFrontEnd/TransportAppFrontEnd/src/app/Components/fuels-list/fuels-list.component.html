@@ -1,27 +1,29 @@
-<table class="table">
-  <thead>
-   <tr>
-     <th>Id</th>
-     <th>Data Tankowania</th>
-     <th>id użytkownika</th>
-     <th>Imie</th>
-     <th>Nazwisko</th>
-     <th>Liczba litrów</th>
-     <th>Cena</th>
-     <th><a [routerLink]="['Fuel/',0]"> Dodaj Tankowanie </a> </th>
-   </tr>
- </thead>
- <tbody *ngFor="let fuel of fuelList; let i = index">
-   <tr>
-   <th>{{fuel.fuelId}}</th>
-   <th>{{fuel.dateOfFuel.toString().substr(0,10)}}</th>
-   <th>{{fuel.userId}}</th>
-   <th>{{fuel.userName}}</th>
-   <th>{{fuel.surname}}</th>
-   <th>{{fuel.numberOfLitres}}</th>
-   <th>{{fuel.price}}</th>
-   <th><a [routerLink]="['Fuel/', fuel.fuelId]"> Edytuj Tankowanie </a> </th>
-   <th><button (click)=DeleteFuel(i)>Usun tankowanie</button></th>
-   </tr>
- </tbody>
- </table>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Data Tankowania</th>
+      <th>id użytkownika</th>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th>Liczba litrów</th>
+      <th>Cena</th>
+      <th><a [routerLink]="['Fuel/',0]" class="btn btn-primary btn-xs"> Dodaj Tankowanie </a> </th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let fuel of fuelList; let i = index">
+    <tr>
+    <th>{{fuel.fuelId}}</th>
+    <th>{{fuel.dateOfFuel.toString().substr(0,10)}}</th>
+    <th>{{fuel.userId}}</th>
+    <th>{{fuel.userName}}</th>
+    <th>{{fuel.surname}}</th>
+    <th>{{fuel.numberOfLitres}}</th>
+    <th>{{fuel.price}}</th>
+    <th><a [routerLink]="['Fuel/', fuel.fuelId]" class="btn btn-primary btn-xs"> Edytuj Tankowanie </a> </th>
+    <th><button (click)=DeleteFuel(i) class="btn btn-danger btn-xs">Usun tankowanie</button></th>
+    </tr>
+  </tbody>
+  </table>
+</div>

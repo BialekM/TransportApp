@@ -12,7 +12,7 @@ export class WorkerService {
   AddWorker(user: User): Promise<CarStatus>{
     return this.http.post('http://localhost:54117/AddUser', JSON.stringify({pesel : user.pesel, userName: user.userName,
     userType: user.userType,
-    login: user.login, password: user.password, surname: user.surname, id : user.id}),
+    firstName: user.firstName, password: user.password, surname: user.surname, id : user.id}),
     { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
      then(response => {
       let y = response.json();
@@ -40,7 +40,7 @@ export class WorkerService {
   DeleteWorker(user: User): Promise<Boolean>{
     return this.http.post('http://localhost:54117/DeleteUser', JSON.stringify({pesel : user.pesel, userName: user.userName,
     userType: user.userType,
-    login: user.login, password: user.password, surname: user.surname, id : user.id}),
+    login: user.userName, password: user.password, surname: user.surname, id : user.id}),
     { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
      then(response => {
       let y = response.json();
@@ -59,6 +59,28 @@ export class WorkerService {
     surveyDescription: survey.surveyDescription, reviewWhen: survey.reviewWhen,
     reviewFrom: survey.reviewFrom}),
     { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+     then(response => {
+      let y = response.json();
+      return y;
+  });
+  }
+
+  DeleteSurvey(id: number): Promise<Boolean>{
+    console.log(id);
+    return this.http.post('http://localhost:54117/DeleteSurvey', JSON.stringify({id: id}),
+    { headers: new Headers({ 'Content-Type': 'application/json' }) }).toPromise().
+     then(response => {
+      let y = response.json();
+      return y;
+  });
+  }  
+
+  ChangePassword(actualPassword: string, newPassword: string): Promise<CarStatus>{
+    const header =  new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('currentUser')});
+    let options = new RequestOptions({ headers: header })
+    console.log(actualPassword);
+    console.log(newPassword);
+    return this.http.post('http://localhost:54117/ChangePassword', JSON.stringify({actualPassword: "kurwiszonJebany"}) ,{headers: new Headers({'Authorization': 'Bearer ' + localStorage.getItem('currentUser'),'Content-Type': 'application/json'})}).toPromise().
      then(response => {
       let y = response.json();
       return y;

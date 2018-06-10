@@ -27,7 +27,7 @@
             <label>Data Tankowania</label>
             <input type="date" class="form-control" name="dateOfFuel" ngModel #DateOfFuel="ngModel"  required [(ngModel)]="dateofFuels">
           </div>
-          <div *ngIf=" (DateOfFuel.touched && IsEmptyParam(fuel.dateOfFuel)) || !((DateOfFuel.valid) || (DateOfFuel.pristine))" class="alert alert-danger">
+          <div *ngIf=" (DateOfFuel.touched && IsEmptyParam(dateofFuels)) || !((DateOfFuel.valid) || (DateOfFuel.pristine))" class="alert alert-danger">
             Data tankowania jest wymagana
           </div>
 
@@ -36,7 +36,7 @@
             <input type="number" class="form-control" name="numberOfLitres" ngModel #NumberOfLitres="ngModel"  required [(ngModel)]="fuel.numberOfLitres">
           </div>
           <div *ngIf=" (NumberOfLitres.touched && IsEmptyParam(fuel.numberOfLitres)) || !((NumberOfLitres.valid) || (NumberOfLitres.pristine))" class="alert alert-danger">
-            Data tankowania jest wymagana
+            Liczba litrów jest wymagana
           </div>
 
           <label>Cena</label>

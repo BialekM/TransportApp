@@ -35,7 +35,7 @@ namespace TransportApp.Services
                             UserName = model.UserName,
                             UserType = model.UserType,
                             Surname = model.Surname,
-                            Login = model.Login,
+                            FirstName = model.FirstName,
                         };
                         await _userMgr.CreateAsync(user, model.Password);
                         UserStatus status = new UserStatus()
@@ -62,7 +62,7 @@ namespace TransportApp.Services
                 else
                 {
                     var user = await _userMgr.FindByIdAsync(model.Id);
-                    user.Login = model.Login;
+                    user.FirstName = model.FirstName;
                     user.UserName = model.UserName;
                     user.Surname = model.Surname;
                     user.Pesel = model.Pesel;
@@ -129,7 +129,7 @@ namespace TransportApp.Services
         public Survey GetSurveys(string id,int surveyId)
         {
             Survey survey = new Survey();
-            survey = _context.Surveys.Where(e => e.UserId.Equals(id) && e.SurveyId == surveyId).FirstOrDefault();
+            survey = _context.Surveys.FirstOrDefault(e => e.UserId.Equals(id) && e.SurveyId == surveyId);
             return survey;
         }
 
@@ -167,6 +167,19 @@ namespace TransportApp.Services
                 status.Status = "Failed";
             }
             return status;
+        }
+
+        public Boolean DeleteSurvey(int surveyId)
+        {
+            var res = false;
+            if (_context.Surveys.Count(s => s.SurveyId == surveyId) != 0)
+            {
+                Survey surveyToDelete = _context.Surveys.FirstOrDefault(s => s.SurveyId == surveyId);
+                if (surveyToDelete != null) _context.Surveys.Remove(surveyToDelete);
+                _context.SaveChanges();
+                res = true;
+            }
+            return res;
         }
 
     }
